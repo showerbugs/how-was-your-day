@@ -1,12 +1,12 @@
 from flask import Flask
-from flask import render_template
+from flask import send_from_directory
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():
-    return render_template('client/index.html')
+    return send_from_directory('client', 'index.html')
 
 
 if __name__ == '__main__':
