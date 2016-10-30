@@ -1,0 +1,6 @@
+# environments
+.env.fish
+.env
+
+# python
+*.pyc
