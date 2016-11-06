@@ -5,7 +5,3 @@ wiki
 
 # python
 *.pyc
-
-# client
-client/node_modules
-client/npm-debug.log
