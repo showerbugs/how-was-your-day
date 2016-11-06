@@ -1,6 +1,7 @@
 # environments
 .env.fish
 .env
+*.swp
 wiki
 
 # python
