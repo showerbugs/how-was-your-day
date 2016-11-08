@@ -5,10 +5,5 @@ install:
   - pip install -r requirements.txt
 script:
   - coverage run --source . testrunner.py --testpath ./tests
-#before_script:
-#  - psql -c 'create database test;' -U postgres     
-#  - pip install -q -U pip setuptools tox coverage
-#script: tox
-
-#after_success:
-#  - bash <(curl -s https://codecov.io/bash)
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
