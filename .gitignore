@@ -14,3 +14,11 @@ client/dist/
 
 #IDE
 .idea/
+
+#Unit test / coverage report
+.coverage
+.tox
+.coverage.*
+.cache
+coverage.xml
+*.cover
