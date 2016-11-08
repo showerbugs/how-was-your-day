@@ -17,7 +17,7 @@ class FunctionalTest(LiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_root(self):
+    def test_root_title(self):
         # Showerbugs enter the root page
         self.browser.get(self.get_server_url())
         # Showerbugs can see "how was your day"
