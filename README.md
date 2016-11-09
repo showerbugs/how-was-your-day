@@ -11,4 +11,6 @@
 ### backend
 * python 3.5.2
 * flask
-* SQLAlchemy  
+* SQLAlchemy
+* FlaskTesting  
+* selenium
