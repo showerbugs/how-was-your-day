@@ -1,8 +1,8 @@
 import os
 
-from config.local import Config as LocalConfig
-from config.dev import Config as DevConfig
-from config.prod import Config as ProdConfig
+from config.local import LocalConfig
+from config.dev import DevConfig
+from config.prod import ProdConfig
 
 
 def get_config():
@@ -24,9 +24,9 @@ def get_config():
 def get_flask_config():
     env = os.environ.get('HOW_WAS_YOUR_DAY_ENV')
     config_object = {
-        'local': 'config.local.Config',
-        'dev': 'config.dev.Config',
-        'prod': 'config.prod.Config',
+        'local': 'config.local.LocalConfig',
+        'dev': 'config.dev.DevConfig',
+        'prod': 'config.prod.ProdConfig',
     }[env]
     return config_object
 
