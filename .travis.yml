@@ -7,3 +7,5 @@ script:
   - coverage run --source . testrunner.py --testpath ./tests
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+env:
+  - HOW_WAS_YOUR_DAY_ENV=local
