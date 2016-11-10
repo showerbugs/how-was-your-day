@@ -32,3 +32,4 @@ def get_flask_config():
 
 
 config = get_config()
+flask_config = get_flask_config()
