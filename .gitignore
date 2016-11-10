@@ -22,3 +22,4 @@ client/dist/
 .cache
 coverage.xml
 *.cover
+ghostdriver.log

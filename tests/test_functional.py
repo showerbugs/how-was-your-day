@@ -11,15 +11,14 @@ class FunctionalTest(LiveServerTestCase):
         return app
 
     def setUp(self):
-        self.browser = webdriver.Chrome()
+        self.browser = webdriver.PhantomJS()
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
         self.browser.quit()
 
-    #def test_root_title(self):
-        #pass
+    def test_root_title(self):
         # Showerbugs enter the root page
-        # self.browser.get(self.get_server_url())
+        self.browser.get(self.get_server_url())
         # Showerbugs can see "how was your day"
-        # self.assertEqual("How was your day", self.browser.title)
+        self.assertEqual("How was your day", self.browser.title)
