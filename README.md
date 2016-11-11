@@ -14,3 +14,9 @@
 * SQLAlchemy
 * FlaskTesting  
 * selenium
+
+### How to start
+Run as local debug mode.
+```sh
+$ HOW_WAS_YOUR_DAY_ENV=local flask run
+```
