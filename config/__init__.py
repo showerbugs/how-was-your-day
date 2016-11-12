@@ -1,6 +1,9 @@
 import os
 
-from config.local import LocalConfig
+try:
+    from config.local import LocalConfig
+except ImportError:
+    pass
 from config.dev import DevConfig
 from config.prod import ProdConfig
 
