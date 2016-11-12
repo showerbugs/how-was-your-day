@@ -28,6 +28,12 @@ FLASK_APP=wsgi.py
 HOW_WAS_YOUR_DAY_ENV=local
 ```
 
+Run this command to generate local.py (local configuration object)
+
+```sh
+python manage.py local_config
+```
+
 Run this command in your python virtualenv
 
 ```sh
