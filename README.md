@@ -24,5 +24,12 @@
 Add this to your shell config file (ex: .bashrc)
 
 ```sh
-HOW_WAS_YOUR_DAY_ENV=local flask run
+FLASK_APP=wsgi.py
+HOW_WAS_YOUR_DAY_ENV=local
+```
+
+Run this command in your python virtualenv
+
+```sh
+flask run
 ```
