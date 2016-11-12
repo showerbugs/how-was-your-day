@@ -3,7 +3,7 @@ import os
 try:
     from config.local import LocalConfig
 except ImportError:
-    pass
+    from config.dev import DevConfig as LocalConfig
 from config.dev import DevConfig
 from config.prod import ProdConfig
 
