@@ -4,18 +4,19 @@
 *.swp
 wiki
 
-# python
+# backend
 *.pyc
+config/local.py
 
-# client
+# frontend 
 client/node_modules
 client/npm-debug.log
 client/dist/
 
-#IDE
+# IDE
 .idea/
 
-#Unit test / coverage report
+# Unit test / coverage report
 .coverage
 .tox
 .coverage.*
