@@ -8,4 +8,4 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 env:
-  - HOW_WAS_YOUR_DAY_ENV=local
+  - HOW_WAS_YOUR_DAY_ENV=dev
