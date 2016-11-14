@@ -11,7 +11,7 @@ def local_config():
                       '(You can pass this step, just push enter)',
                       type=str, default='', show_default=False)
     dbname = prompt('Enter your DB name', type=str, default='howwasyourday')
-    dbhost = prompt('Enter your DB host', type=int, default='localhost')
+    dbhost = prompt('Enter your DB host', type=str, default='localhost')
     dbport = prompt('Enter your DB port', type=int, default=5432)
     test_dbname = prompt('Enter your TEST DB name',
                          type=str, default='howwasyourday_test')
