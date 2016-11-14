@@ -11,13 +11,14 @@ def local_config():
                       '(You can pass this step, just push enter)',
                       type=str, default='', show_default=False)
     dbname = prompt('Enter your DB name', type=str, default='howwasyourday')
+    dbhost = prompt('Enter your DB host', type=int, default='localhost')
     dbport = prompt('Enter your DB port', type=int, default=5432)
     test_dbname = prompt('Enter your TEST DB name',
                          type=str, default='howwasyourday_test')
 
     env = Environment(loader=FileSystemLoader('config'))
     tmpl = env.get_template('local.py.tmpl')
-    localpy = tmpl.render(user=user, password=password,
-                          dbname=dbname, dbport=dbport, test_dbname=test_dbname)
+    localpy = tmpl.render(user=user, password=password, dbhost=dbhost,
+                          dbport=dbport, dbname=dbname, test_dbname=test_dbname)
     with open('config/local.py', 'w') as fp:
         fp.write(localpy)

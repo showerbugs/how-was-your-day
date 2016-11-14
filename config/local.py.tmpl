@@ -10,6 +10,7 @@ class LocalConfig(BaseConfig):
     {%- else -%}
     DB_PASSWORD = ''
     {%- endif %}
-    DB_NAME = '{{ dbname }}'
+    DB_HOST = '{{ dbhost }}'
     DB_PORT = {{ dbport }}
+    DB_NAME = '{{ dbname }}'
     TEST_DB_NAME = '{{ test_dbname }}'
