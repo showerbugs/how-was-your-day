@@ -4,7 +4,7 @@ python:
 install: 
   - pip install -r requirements.txt
 script:
-  - coverage run --source . testrunner.py --testpath ./tests
+  - py.test --cov=./
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 env:
