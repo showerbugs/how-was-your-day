@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as actions from './actions'
+import * as getters from './getters'
 
 Vue.use(Vuex)
 
 const defaultState = {
-  topics: [],
-  count: 0
+  posts: [],
+  project: {},
+  projectInfo: []
 }
 
 const inBrowser = typeof window !== 'undefined'
@@ -14,20 +17,22 @@ const inBrowser = typeof window !== 'undefined'
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
 const mutations = {
-  TOPICS_LIST: (state, topics) => {
-    state.topics = topics
+  GET_POST_LIST: (state, posts) => {
+    state.posts = posts
   },
 
-  INCREMENT: (state) => {
-    state.count++
+  GET_PROJECT: (state, project) => {
+    state.project = project
   },
 
-  DECREMENT: (state) => {
-    state.count--
-  }
+  GET_PROJECT_INFO: (state, projectInfo) => {
+    state.projectInfo = projectInfo
+  },
 }
 
 export default new Vuex.Store({
   state,
-  mutations
+  actions,
+  mutations,
+  getters
 })
