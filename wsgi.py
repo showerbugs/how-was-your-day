@@ -2,11 +2,13 @@ from flask import Flask
 from flask import send_from_directory
 
 from config import flask_config
+from users.views import app as users_app
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(flask_config)
+    app.register_blueprint(users_app, url_prefix='/users')
     return app
 
 
