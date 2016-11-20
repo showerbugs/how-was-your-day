@@ -1,40 +1,70 @@
 <template>
   <div id="app">
+    <lnb></lnb>
    <!-- <img src="./assets/logo.png"> -->
-   {{msg}}
-   <ul>
-     <li><router-link to="/daily">Daily</router-link></li>
-     <li><router-link to="/organization">Organization</router-link></li>
-   </ul>
    <router-view class="view"></router-view>
+   <Footer></Footer>
    </div>
 </template>
 
 <script>
+import Lnb from './components/Lnb.vue'
+import Footer from './components/Footer.vue'
+import lodash from 'lodash'
+import jquery from 'jquery'
+//import bootstrap from 'bootstrap'
+
+var _ = window._ = lodash;
+var $ = window.$ = window.jQuery = jquery;
+
 export default {
   name: 'app',
   data () {
     return {
       msg: 'How was your day? Tell me anything.'
     }
+  },
+  components: {
+    Lnb
   }
 }
 </script>
 
 <style>
+/*@import "../node_modules/material-design-icons/iconfont/material-icons.css";*/
+body {
+  margin: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+.content {
+  max-width: 1080px;
+}
+
+.icon-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+img {
+  width: 100%;
 }
 h1, h2 {
   font-weight: normal;
+  margin: 0;
 }
 ul {
   list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 li {
