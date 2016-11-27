@@ -4,13 +4,12 @@ from sqlalchemy.orm import sessionmaker
 from alembic.command import upgrade as alembic_upgrade
 from alembic.config import Config as AlembicConfig
 
-from wsgi import create_app
+from wsgi import app
 from config import config
 
 
 @pytest.fixture(scope='session')
 def flask_app():
-    app = create_app()
     app_context = app.app_context()
     app_context.push()
     yield app
