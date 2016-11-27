@@ -10,7 +10,7 @@ Session = sessionmaker(bind=engine)
 
 
 @contextmanager
-def session():
+def db():
     session = Session()
     try:
         yield session
