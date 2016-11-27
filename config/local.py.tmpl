@@ -13,7 +13,8 @@ class LocalConfig(BaseConfig):
     DB_HOST = '{{ dbhost }}'
     DB_PORT = {{ dbport }}
     DB_NAME = '{{ dbname }}'
-    DB_URL = 'postgresql://{}:{}@{}:{}/{}'.format(DB_USER, DB_PASSWORD,
-                                                  DB_HOST, DB_PORT, DB_NAME)
+    DB_URL = 'postgresql://{}:{}@{}:{}/{}'.format(
+        DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)
     TEST_DB_NAME = '{{ test_dbname }}'
-
+    TEST_DB_URL = 'postgresql://{}:{}@{}:{}/{}'.format(
+        DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, TEST_DB_NAME)
