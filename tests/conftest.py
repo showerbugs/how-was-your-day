@@ -33,7 +33,6 @@ def db():
     alembic_config = AlembicConfig(config['ALEMBIC_INI'])
     alembic_config.set_main_option('sqlalchemy.url', config['TEST_DB_URL'])
     alembic_upgrade(alembic_config, 'head')
-    print('################### migration complete')
     yield _db
     engine.dispose()
 
