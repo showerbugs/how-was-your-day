@@ -12,8 +12,8 @@ sys.path.append(os.getcwd())
 # access to the values within the .ini file in use.
 config = context.config
 
-from config import config as my_config
-config.set_main_option('sqlalchemy.url', my_config['DB_URL'])
+# from config import config as my_config
+# config.set_main_option('sqlalchemy.url', my_config['DB_URL'])
 
 
 # Interpret the config file for Python logging.
