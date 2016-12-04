@@ -19,6 +19,7 @@
   "homepage": "https://github.com/showerbugs/how-was-your-day#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
     "lodash": "^4.17.2",
     "material-design-icons": "^3.0.1",
     "serialize-javascript": "^1.3.0",
