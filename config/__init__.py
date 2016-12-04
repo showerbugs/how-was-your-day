@@ -6,6 +6,7 @@ except ImportError:
     from config.dev import DevConfig as LocalConfig
 from config.dev import DevConfig
 from config.prod import ProdConfig
+from config.travis import TravisConfig
 
 
 def get_config():
@@ -14,7 +15,7 @@ def get_config():
         'local': LocalConfig,
         'dev': DevConfig,
         'prod': ProdConfig,
-        'travis'
+        'travis': TravisConfig
     }[env]
 
     config = {}
