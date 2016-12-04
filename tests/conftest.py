@@ -1,15 +1,17 @@
 import pytest
+from flask import g
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from alembic.command import upgrade as alembic_upgrade
 from alembic.config import Config as AlembicConfig
 
-from wsgi import app
+from wsgi import create_app
 from config import config
 
 
 @pytest.fixture(scope='session')
 def flask_app():
+    app = create_app()
     app_context = app.app_context()
     app_context.push()
     yield app
@@ -38,7 +40,7 @@ def db():
 
 @pytest.fixture(scope='function')
 def session(db):
-    session = db['session']()
-    yield session
-    session.rollback()
-    session.close()
+    g.db = db['session']()
+    yield g.db
+    g.db.rollback()
+    g.db.close()
