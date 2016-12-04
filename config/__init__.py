@@ -32,7 +32,7 @@ def get_flask_config():
         'local': 'config.local.LocalConfig',
         'dev': 'config.dev.DevConfig',
         'prod': 'config.prod.ProdConfig',
-        'travis': 'config.prod.TravisConfig',
+        'travis': 'config.travis.TravisConfig',
     }[env]
     return config_object
 
