@@ -19,7 +19,14 @@ class User(Base):
     created_at = Column(DateTime(timezone=True), default=datetime.now)
     updated_at = Column(DateTime(timezone=True), default=datetime.now,
                         onupdate=datetime.now)
+    
+    def __init__(self, email, password, name):
+        self.email = email
+        self.password = password
+        self.name = name
 
+    def __repr__(self):
+        return '<user("{}", "{}", "{}")>'.format(self.email, self.password, self.name)
 
 class Project(Base):
     __tablename__ = 'projects'
