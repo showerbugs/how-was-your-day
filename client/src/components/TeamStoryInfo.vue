@@ -12,17 +12,17 @@
 import { mapGetters } from 'vuex'
 
 const fetchInitialData = store => {
-  return store.dispatch(`getProjectInfo`)
+  return store.dispatch(`getTeamCountInfo`)
 }
 
 export default {
   computed: {
-    ...mapGetters({
-      infos: 'getProjectInfo'
-    })
+    // ...mapGetters({
+    //   infos: 'getTeamCountInfo'
+    // })
   },
   mounted () {
-    fetchInitialData(this.$store)
+  //  fetchInitialData(this.$store)
   }
 }
 </script>

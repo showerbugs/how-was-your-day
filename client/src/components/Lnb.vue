@@ -3,7 +3,7 @@
     <button class="icon-btn dropdown"><i class="material-icons">menu</i></button>
     <span class="logo">how-was-your-day</span>
     <ul>
-      <li><router-link to="/project">Project</router-link></li>
+      <li><router-link to="/team">Team</router-link></li>
       <li><router-link to="/organization">Organization</router-link></li>
     </ul>
   </header>

@@ -1,0 +1,14 @@
+{
+  "isSuccess": true,
+  "httpStatusCode": 200,
+  "result": {
+    "totalCount": 5,
+    "data": [
+    ],
+    "countInfo": [
+      {"name": "My Stroy", "count": "15"},
+      {"name": "Team Total Stroy", "count": "64"},
+      {"name": "Dairy Stroy", "count": "20"}
+    ]
+  }
+}

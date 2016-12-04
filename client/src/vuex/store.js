@@ -6,9 +6,8 @@ import * as getters from './getters'
 Vue.use(Vuex)
 
 const defaultState = {
-  posts: [],
-  project: {},
-  projectInfo: []
+  stories: [],
+  team: {}
 }
 
 const inBrowser = typeof window !== 'undefined'
@@ -17,17 +16,14 @@ const inBrowser = typeof window !== 'undefined'
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
 const mutations = {
-  GET_POST_LIST: (state, posts) => {
-    state.posts = posts
+  GET_STORIES: (state, result) => {
+    state.teamCountInfo = result.countInfo
+    state.stories = result.data
   },
 
-  GET_PROJECT: (state, project) => {
-    state.project = project
-  },
-
-  GET_PROJECT_INFO: (state, projectInfo) => {
-    state.projectInfo = projectInfo
-  },
+  GET_TEAM: (state, team) => {
+    state.team = team
+  }
 }
 
 export default new Vuex.Store({

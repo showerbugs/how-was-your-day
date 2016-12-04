@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Project from '../components/Project.vue'
+import Team from '../components/TeamView.vue'
 import Organization from '../components/Organization.vue'
 import VueRouter from 'vue-router'
 
@@ -9,7 +9,7 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/project', component: Project },
+    { path: '/team', component: Team },
     { path: '/organization', component: Organization }
   ]
 })
