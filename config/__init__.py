@@ -14,6 +14,7 @@ def get_config():
         'local': LocalConfig,
         'dev': DevConfig,
         'prod': ProdConfig,
+        'travis'
     }[env]
 
     config = {}

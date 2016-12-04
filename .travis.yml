@@ -1,13 +1,17 @@
 language: python
 python:
   - "3.5"
-install: 
+service:
+  - postgresql
+install:
   - pip install -r requirements.txt
+before_script:
+  - psql -c 'create database howwasyourday_test;' -U postgres
 script:
   - py.test --cov=./
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 env:
-  - HOW_WAS_YOUR_DAY_ENV=dev
+  - HOW_WAS_YOUR_DAY_ENV=travis
 notifications:
   slack: showerbugs:Fvjq8gKDqp8KgROWr9UX4APk
