@@ -26,6 +26,7 @@
     "serve-favicon": "^2.3.0",
     "vue": "^2.0.1",
     "vue-router": "^2.0.0",
+    "vue-ui": "^0.1.3",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^3.0.0"
   },
@@ -62,6 +63,9 @@
     "sinon-chai": "^2.8.0",
     "vue-loader": "^9.7.0",
     "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.0"
+    "webpack-dev-server": "^2.1.0-beta.0",
+    "jade": "^1.11.0",
+    "jade-html-loader": "0.0.3",
+    "style-loader": "^0.13.1"
   }
 }
