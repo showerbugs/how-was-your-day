@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './vuex/store'
 import { sync } from 'vuex-router-sync'
+//import vueUI from 'vue-ui'
+
+//Vue.use(vueUI)
 
 sync(store, router)
 

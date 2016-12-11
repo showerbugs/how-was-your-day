@@ -1,30 +1,38 @@
-export const getPosts = ({ commit, state }) => {
-  return fetch('http://jsonplaceholder.typicode.com/', {
-  	method: 'get'
-  }).then(function(response) {
-
-  }).catch(function(err) {
-  	// Error :(
+function fetchFromServer (url, opt = {method: 'GET'}) {
+  return fetch(url, opt).then(function(res){
+    if (res.ok) {
+      return res.json().then(function(res) {
+        return res.result;
+      });
+    } else {
+      console.log("Looks like the response wasn't perfect, got status", res.status);
+    }
+  }, function(e) {
+    console.log("Fetch failed!", e);
   });
 }
 
-export const getProject = ({ commit, state }) => {
-  return fetch('http://jsonplaceholder.typicode.com/', {
-  	method: 'get'
-  }).then(function(response) {
-    //commit()
-  }).catch(function(err) {
-  	// Error :(
+
+export const getStories = ({ commit, state }) => {
+  return fetchFromServer('./mock/getStories.json').then(function(result) {
+      console.log(result);
+      commit('GET_STORIES', result);
   });
 }
 
-export const getProjectInfo = ({ commit, state }) => {
-  commit('GET_PROJECT_INFO', [
-    {name: "My Diary", count: "15"},
-    {name: "Team Diary", count: "64"},
-    {name: "Day", count: "20"}
-  ])
-  return;
+export const getTeam = ({ commit, state }) => {
+  return fetchFromServer('./mock/getTeam.json').then(function(result) {
+      console.log(result, result.entries);
+      commit('GET_TEAM', result);
+  });
+}
+
+export const writeStory = ({ commit }, content) => {
+    // fetchFromServer('/stories', {method: 'POST', content}).then(function(result) {
+    //     commit('GET_STORIES', result);
+    // });
+    console.log(content)
+    commit('UPDATE_STORY', content);
 }
 
 

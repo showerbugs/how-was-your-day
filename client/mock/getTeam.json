@@ -1,0 +1,8 @@
+{
+  "isSuccess": true,
+  "httpStatusCode": 200,
+  "result": {
+    "name": "Showerbugs",
+    "description": "A group for developer"
+  }
+}

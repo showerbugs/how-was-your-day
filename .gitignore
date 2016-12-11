@@ -8,10 +8,10 @@ wiki
 *.pyc
 config/local.py
 
-# frontend 
+# frontend
 client/node_modules
-client/npm-debug.log
 client/dist/
+npm-debug.log
 
 # IDE
 .idea/
