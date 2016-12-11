@@ -11,18 +11,13 @@
 <script>
 import { mapGetters } from 'vuex'
 
-const fetchInitialData = store => {
-  return store.dispatch(`getTeamCountInfo`)
-}
-
 export default {
   computed: {
-    // ...mapGetters({
-    //   infos: 'getTeamCountInfo'
-    // })
+    ...mapGetters({
+      infos: 'getTeamCountInfo'
+    })
   },
-  mounted () {
-  //  fetchInitialData(this.$store)
+  created () {
   }
 }
 </script>

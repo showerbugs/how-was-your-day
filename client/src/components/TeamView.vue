@@ -15,19 +15,15 @@ import TeamTitle from './TeamTitle.vue'
 import WriteStory from './WriteStory.vue'
 import TimeLine from './TimeLine.vue'
 
-const fetchInitialData = store => {
-  console.log(store.dispatch(`getTeam`))
-  return store.dispatch(`getTeam`)
-}
 export default {
-  prefetch: fetchInitialData,
   computed: {
     ...mapGetters({
       team: 'getTeam'
     })
   },
   mounted () {
-    fetchInitialData(this.$store)
+    this.$store.dispatch('getTeam')
+    this.$store.dispatch('getStories')
   },
   components: {
     TeamStoryInfo,

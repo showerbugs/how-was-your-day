@@ -1,5 +1,5 @@
-function fetchFromServer (url, method = 'GET') {
-  return fetch(url, {method: method}).then(function(res){
+function fetchFromServer (url, opt = {method: 'GET'}) {
+  return fetch(url, opt).then(function(res){
     if (res.ok) {
       return res.json().then(function(res) {
         return res.result;
@@ -14,11 +14,9 @@ function fetchFromServer (url, method = 'GET') {
 
 
 export const getStories = ({ commit, state }) => {
-  return fetchFromServer('./mock/getStroies.json').then(function(result) {
+  return fetchFromServer('./mock/getStories.json').then(function(result) {
       console.log(result);
       commit('GET_STORIES', result);
-  }).catch(function(err) {
-  	// Error :(
   });
 }
 
@@ -29,11 +27,13 @@ export const getTeam = ({ commit, state }) => {
   });
 }
 
-export const writeStory = ({ commit, state }) => {
-
+export const writeStory = ({ commit }, content) => {
+    // fetchFromServer('/stories', {method: 'POST', content}).then(function(result) {
+    //     commit('GET_STORIES', result);
+    // });
+    console.log(content)
+    commit('UPDATE_STORY', content);
 }
-
-
 
 
 export const increment = ({ commit }) => commit('INCREMENT')

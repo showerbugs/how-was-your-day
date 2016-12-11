@@ -4,6 +4,13 @@
   "result": {
     "totalCount": 5,
     "data": [
+      {
+        "content": "Today is good",
+        "creator": "영근"
+      }, {
+        "content": "I was very sick.",
+        "creator": "호우"
+      }
     ],
     "countInfo": [
       {"name": "My Stroy", "count": "15"},

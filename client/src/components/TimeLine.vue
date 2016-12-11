@@ -1,161 +1,59 @@
 <template>
 <div class="container">
     <ul class="timeline">
-        <li>
-          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <img class="img-responsive" src="http://lorempixel.com/1600/500/sports/2" />
+      <li v-for="story in stories">
+        <div class="timeline-badge primary"></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
 
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-            </div>
-
-            <div class="timeline-footer">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                <a><i class="glyphicon glyphicon-share"></i></a>
-                <a class="pull-right">Continuar Lendo</a>
-            </div>
           </div>
-        </li>
-
-        <li  class="timeline-inverted">
-          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <img class="img-responsive" src="http://lorempixel.com/1600/500/sports/2" />
-
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-            </div>
-
-            <div class="timeline-footer">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                <a><i class="glyphicon glyphicon-share"></i></a>
-                <a class="pull-right">Continuar Lendo</a>
-            </div>
+          <div class="timeline-body">
+            <p>{{ story.content }}</p>
           </div>
-        </li>
-        <li>
-          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <img class="img-responsive" src="http://lorempixel.com/1600/500/sports/2" />
-
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-            </div>
-
-            <div class="timeline-footer">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                <a><i class="glyphicon glyphicon-share"></i></a>
-                <a class="pull-right">Continuar Lendo</a>
-            </div>
+          <div class="timeline-footer">
+              <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
+              <a><i class="glyphicon glyphicon-share"></i></a>
+              <a class="pull-right">{{story.creator}}</a>
           </div>
-        </li>
-
-        <li  class="timeline-inverted">
-          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-          <div class="timeline-panel">
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-            </div>
-
-            <div class="timeline-footer">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                <a><i class="glyphicon glyphicon-share"></i></a>
-                <a class="pull-right">Continuar Lendo</a>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <img class="img-responsive" src="http://lorempixel.com/1600/500/sports/2" />
-
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-            </div>
-
-            <div class="timeline-footer">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                <a><i class="glyphicon glyphicon-share"></i></a>
-                <a class="pull-right">Continuar Lendo</a>
-            </div>
-          </div>
-        </li>
-
-        <li  class="timeline-inverted">
-          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <img class="img-responsive" src="http://lorempixel.com/1600/500/sports/2" />
-
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-            </div>
-
-            <div class="timeline-footer primary">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                <a><i class="glyphicon glyphicon-share"></i></a>
-                <a class="pull-right">Continuar Lendo</a>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-          <div class="timeline-panel">
-            <div class="timeline-body">
-              <p><b>All the credits go to <a href="http://bootsnipp.com/rafamaciel">Rafamaciel</a></b></p>
-              <p>I only make it responsive and remove the empty spaces to be more like Facebook timeline!</p>
-            </div>
-
-            <div class="timeline-footer primary">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
-                <a><i class="glyphicon glyphicon-share"></i></a>
-                <a class="pull-right">Continuar Lendo</a>
-            </div>
-          </div>
-        </li>
-
+        </div>
+      </li>
         <li class="clearfix" style="float: none;"></li>
     </ul>
 </div>
 </template>
 <script>
-    $(document).ready(function(){
-    var my_posts = $("[rel=tooltip]");
+import { mapGetters } from 'vuex'
 
-    var size = $(window).width();
-    for(i=0;i<my_posts.length;i++){
-        the_post = $(my_posts[i]);
+export default {
+  computed: {
+    ...mapGetters({
+      stories: 'getStories'
+    })
+  },
+  created () {
 
-        if(the_post.hasClass('invert') && size >=767 ){
-            the_post.tooltip({ placement: 'left'});
-            the_post.css("cursor","pointer");
-        }else{
-            the_post.tooltip({ placement: 'rigth'});
-            the_post.css("cursor","pointer");
-        }
-    }
-    });
+    console.log(this.stories)
+    // var my_posts = $("[rel=tooltip]");
+    //
+    // var size = $(window).width();
+    // for(var i=0;i<this.stroies.length;i++){
+    //     the_post = $(my_posts[i]);
+    //
+    //     if(the_post.hasClass('invert') && size >=767 ){
+    //         the_post.tooltip({ placement: 'left'});
+    //         the_post.css("cursor","pointer");
+    //     }else{
+    //         the_post.tooltip({ placement: 'rigth'});
+    //         the_post.css("cursor","pointer");
+    //     }
+    // }
+  }
+}
+
 </script>
 <style lang="sass" scoped>
     .timeline {
   list-style: none;
-  padding: 20px 0 20px;
   position: relative;
 }
 .timeline:before {
@@ -270,14 +168,14 @@
 }
 .timeline-body > p,
 .timeline-body > ul {
-    padding:20px;
+    padding:5px;
     margin-bottom: 0;
 }
 .timeline-body > p + p {
   margin-top: 5px;
 }
 .timeline-footer{
-    padding:20px;
+    padding:5px;
     background-color:#f4f4f4;
 }
 .timeline-footer > a{
@@ -368,7 +266,7 @@
   margin-bottom: 30px;
 }
 .timeline > li:nth-child(2){
-  margin-top: 60px;
+  margin-top: 20px;
 }
 .timeline > li.timeline-inverted > .timeline-badge{
   left: -12px;
@@ -380,7 +278,7 @@
     }
 
     ul.timeline > li {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       position: relative;
       width:100%;
       float: left;

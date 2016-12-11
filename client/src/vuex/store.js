@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 const defaultState = {
   stories: [],
-  team: {}
+  team: {},
+  teamCountInfo: []
 }
 
 const inBrowser = typeof window !== 'undefined'
@@ -23,6 +24,14 @@ const mutations = {
 
   GET_TEAM: (state, team) => {
     state.team = team
+  },
+  //mock용 
+  UPDATE_STORY: (state, result) => {
+    console.log(result)
+    state.stories.push({
+      content: result,
+      creator: '호우'
+    })
   }
 }
 

@@ -1,18 +1,35 @@
 <template>
   <div>
-
+    <textarea placeholder="how was your day? write stroy" @keyup.enter="writeStroy"></textarea>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+//model을 쓸경우 상위 컴퍼넌트에 data 값이 있고 props로 받아야 한다.
 export default {
-  props: ['team']
-
-
+  props: ['team'],
+  methods: {
+    writeStroy(e) {
+      e.preventDefault()
+      const content = e.target.value
+      if(content.trim()) {
+        this.$store.dispatch('writeStory', content)
+      }
+      e.target.value = ''
+    }
+  }
 }
 
 </script>
 <style lang="sass?outputStyle=expanded" scoped>
-
+textarea {
+  display: inline-block;
+  width: 80%;
+  box-sizing: border-box;
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
 
 </style>
