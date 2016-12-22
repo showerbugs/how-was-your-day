@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask import g
 from flask_login.login_manager import LoginManager
@@ -12,6 +14,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(flask_config)
     app.register_blueprint(users_app, url_prefix='/users')
+    app.secret_key = os.urandom(24)
 
     login_manager = LoginManager()
     login_manager.init_app(app)
