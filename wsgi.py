@@ -1,9 +1,10 @@
 from flask import Flask
 from flask import g
-from flask import send_from_directory
+from flask_login.login_manager import LoginManager
 
 from config import flask_config
 from db.session import Session
+from db.models import User
 from users.views import app as users_app
 
 
@@ -11,6 +12,14 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(flask_config)
     app.register_blueprint(users_app, url_prefix='/users')
+
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+
+    def flask_login_user_loader(user_id):
+        return g.db.query(User).filter(User.id == user_id).first()
+    login_manager.user_loader(flask_login_user_loader)
+
     return app
 
 
@@ -32,10 +41,6 @@ def teardown_request(e):
             db.rollback()
         db.close()
 
-
-@app.route('/', methods=['GET'])
-def hello_world():
-    return send_from_directory('client', 'index.html')
 
 if __name__ == '__main__':
     app.run()
