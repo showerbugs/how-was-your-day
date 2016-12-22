@@ -3,6 +3,8 @@ from flask import request
 from flask import jsonify
 from flask import g
 from flask_login import login_user
+from flask_login import logout_user
+from flask_login import login_required
 
 from db.models import User
 
@@ -23,4 +25,11 @@ def signin():
         return jsonify(result={'success': False})
 
     login_user(user)
+    return jsonify(result={'success': True})
+
+
+@app.route('/signout', methods=['DELETE'])
+@login_required
+def signout():
+    logout_user()
     return jsonify(result={'success': True})
