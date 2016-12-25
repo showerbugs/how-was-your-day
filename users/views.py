@@ -2,6 +2,10 @@ from flask import Blueprint
 from flask import request
 from flask import jsonify
 from flask import g
+from flask_login import login_user
+from flask_login import logout_user
+from flask_login import login_required
+
 from db.models import User
 
 app = Blueprint('users', __name__)
@@ -9,8 +13,23 @@ app = Blueprint('users', __name__)
 
 @app.route('/signin', methods=['POST'])
 def signin():
-    email = request.form['email']
-    name = request.form['name']
-    password = request.form['password']
-    g.db.add(User(email, password, name))
+    params = request.json
+    email = params['email']
+    password = params['password']
+
+    user = g.db.query(User)\
+        .filter(User.email == email,
+                User.password == password)\
+        .first()
+    if not user:
+        return jsonify(success=False, msg='No such user')
+
+    login_user(user)
+    return jsonify(success=True)
+
+
+@app.route('/signout', methods=['DELETE'])
+@login_required
+def signout():
+    logout_user()
     return jsonify(result={'success': True})

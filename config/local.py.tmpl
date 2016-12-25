@@ -1,3 +1,5 @@
+import os
+
 from config.base import BaseConfig
 
 
@@ -18,3 +20,5 @@ class LocalConfig(BaseConfig):
     TEST_DB_NAME = '{{ test_dbname }}'
     TEST_DB_URL = 'postgresql://{}:{}@{}:{}/{}'.format(
         DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, TEST_DB_NAME)
+
+    ALEMBIC_INI = os.path.join(os.getcwd(), 'alembic.ini')

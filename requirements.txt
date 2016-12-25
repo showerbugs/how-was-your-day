@@ -2,7 +2,7 @@ alembic==0.8.8
 click==6.6
 coverage==4.2
 Flask==0.11.1
-Flask-Testing==0.6.1
+Flask-Login==0.4.0
 itsdangerous==0.24
 Jinja2==2.8
 Mako==1.0.5
