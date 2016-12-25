@@ -1,21 +1,18 @@
-from db.models import User
+import json
+
 
 class TestUser:
-    def test_signin(self, flask_client, session):
+    def test_signin(self, flask_client, user_hou):
         # Given
-        # 중복되지 않는 아이디와 비밀번호
 
         # When
-        # POST /users/로 중복되지 않는 아이디와 비밀번호를 담아 요청한다.
-        data = dict(name='Hou', email='hou@gmail.com', password='1111')
-        response = flask_client.post('/users/signin', data=data)
+        data = json.dumps({'email': 'hou@email.com', 'password': '1111'})
+        resp = flask_client.post('/users/signin', data=data,
+                                 content_type='application/json')
+        result = json.loads(resp.data.decode())
 
         # Then
-        # 200 OK가 리턴된다.
-        assert 200 == response.status_code
-
-        # User Table에 저장된다.
-        assigned_user = session.query(User).filter_by(name='Hou',email='hou@gmail.com',\
-            password='1111').first()
-        assert assigned_user != None
-
+        # 응답의 status code가 200이다.
+        assert resp.status_code == 200
+        # 로그인에 성공한다.
+        assert result['success']

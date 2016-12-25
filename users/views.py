@@ -22,10 +22,10 @@ def signin():
                 User.password == password)\
         .first()
     if not user:
-        return jsonify(result={'success': False})
+        return jsonify(success=False, msg='No such user')
 
     login_user(user)
-    return jsonify(result={'success': True})
+    return jsonify(success=True)
 
 
 @app.route('/signout', methods=['DELETE'])
