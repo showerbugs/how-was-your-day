@@ -32,4 +32,19 @@ def signin():
 @login_required
 def signout():
     logout_user()
-    return jsonify(result={'success': True})
+    return jsonify(success=True)
+
+
+@app.route('/', methods=['POST'])
+def create_user():
+    params = request.json
+    email = params['email']
+    name = params['name']
+    password = params['password']
+    password_repeat = params['password_repeat']
+    if password != password_repeat:
+        return jsonify(success=False, msg='Repeat same password')
+
+    new_user = User(email=email, name=name, password=password)
+    g.db.add(new_user)
+    return jsonify(success=True)
