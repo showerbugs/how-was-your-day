@@ -1,5 +1,4 @@
 import os
-import sys
 
 from flask import Flask
 from flask import g
@@ -42,8 +41,8 @@ def before_request():
 def teardown_request(e):
     db = getattr(g, 'db', None)
     if db is not None:
-        if not e or not hasattr(sys, '_called_from_test'):
-            # there's no exception, or not executed by pytest
+        if not e:
+            # there's no exception
             db.commit()
         else:
             db.rollback()
