@@ -8,7 +8,7 @@ from config import flask_config
 from db.session import Session
 from db.models import User
 from users.views import app as users_app
-from teams.views import app as projects_app
+from teams.views import app as teams_app
 
 
 def create_app():
@@ -17,7 +17,7 @@ def create_app():
     app.secret_key = os.urandom(24)
 
     app.register_blueprint(users_app, url_prefix='/users')
-    app.register_blueprint(projects_app, url_prefix='/teams')
+    app.register_blueprint(teams_app, url_prefix='/teams')
 
     login_manager = LoginManager()
     login_manager.init_app(app)
