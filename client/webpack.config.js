@@ -1,6 +1,5 @@
 var path = require('path')
 var webpack = require('webpack')
-
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -23,16 +22,16 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file',
+        test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)$/,
+        loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
         }
       },
       {
-         test: /\.scss$/,
-         loaders: ["style", "css", "sass"]
-       }
+        test: /\.(scss|css)$/,
+        loaders: ["style-loader", "css-loader", "sass-loader"]
+      }
     ]
   },
   resolve: {

@@ -1,18 +1,50 @@
 from flask import Blueprint
 from flask import request
+from flask import g
 from flask import jsonify
-from db.session import Session
+from flask_login import login_user
+from flask_login import logout_user
+from flask_login import login_required
+
 from db.models import User
 
 app = Blueprint('users', __name__)
-session = Session()
 
-@app.route('', methods=['POST'])
+
+@app.route('/signin', methods=['POST'])
 def signin():
-    email = request.form['email']
-    name = request.form['name']
-    password = request.form['password']
-    
-    session.add(User(email, password, name))
-    session.commit()
-    return jsonify(result={'success': True})
+    params = request.json
+    email = params['email']
+    password = params['password']
+
+    user = g.db.query(User)\
+        .filter(User.email == email,
+                User.password == password)\
+        .first()
+    if not user:
+        return jsonify(success=False, msg='No such user')
+
+    login_user(user)
+    return jsonify(success=True)
+
+
+@app.route('/signout', methods=['DELETE'])
+@login_required
+def signout():
+    logout_user()
+    return jsonify(success=True)
+
+
+@app.route('/', methods=['POST'])
+def create_user():
+    params = request.json
+    email = params['email']
+    name = params['name']
+    password = params['password']
+    password_repeat = params['password_repeat']
+    if password != password_repeat:
+        return jsonify(success=False, msg='Repeat same password')
+
+    new_user = User(email=email, name=name, password=password)
+    g.db.add(new_user)
+    return jsonify(success=True)

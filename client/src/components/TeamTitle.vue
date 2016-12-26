@@ -1,8 +1,8 @@
 <template>
   <div class="project-title">
     <div class="content">
-      <h1>ShowerBugs</h1>
-      {{detail}}
+      <h1>{{team.name}}</h1>
+      {{team.description}}
       <button v-on:click="setProject">Settings</button>
     </div>
 
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  props: ['project'],
+  props: ['team'],
   computed: {
     detail: function(){
       return 'more detail showerbugs'

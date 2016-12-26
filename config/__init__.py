@@ -6,6 +6,7 @@ except ImportError:
     from config.dev import DevConfig as LocalConfig
 from config.dev import DevConfig
 from config.prod import ProdConfig
+from config.travis import TravisConfig
 
 
 def get_config():
@@ -14,6 +15,7 @@ def get_config():
         'local': LocalConfig,
         'dev': DevConfig,
         'prod': ProdConfig,
+        'travis': TravisConfig
     }[env]
 
     config = {}
@@ -30,6 +32,7 @@ def get_flask_config():
         'local': 'config.local.LocalConfig',
         'dev': 'config.dev.DevConfig',
         'prod': 'config.prod.ProdConfig',
+        'travis': 'config.travis.TravisConfig',
     }[env]
     return config_object
 
