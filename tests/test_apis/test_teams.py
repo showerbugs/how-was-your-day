@@ -7,21 +7,15 @@ class TestUser:
     def test_create_team(self, flask_client, session, logined_user_hou):
         # Given
         new_team_name = 'new_team'
-
-        # When
         data = json.dumps({'name': new_team_name})
-        resp = flask_client.post('/teams/', data=data,
-                                 content_type='application/json',
-                                 follow_redirects=True)
-        result = json.loads(resp.data.decode())
-
-        # Then
-        resp = flask_client.get('/teams/', content_type='application/json',
-                                follow_redirects=True)
-        result = json.loads(resp.data.decode())
-        print(result['data']['teams'])
-        assert len(result['data']['teams']) == 1
-        assert result['data']['teams'][0]['name'] == new_team_name
+        # When
+        flask_client.post('/teams/', data=data,
+                          content_type='application/json',
+                          follow_redirects=True)
+        # Then 새로운 team이 정상적으로 db에 들어가 있다.
+        created_team = session.query(Team) \
+            .filter(Team.name == new_team_name).first()
+        assert created_team.name == new_team_name
 
     def test_get_team_list(self, flask_client, session, logined_user_hou):
         # Given 팀을 만들고
