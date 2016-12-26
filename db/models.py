@@ -31,15 +31,15 @@ class User(Base, UserMixin):
             self.email, self.password, self.name)
 
 
-class Project(Base):
-    __tablename__ = 'projects'
+class Team(Base):
+    __tablename__ = 'teams'
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
 
     users = relationship('User',
-                         secondary=lambda: UserProject,
-                         backref=backref('projects', lazy='dynamic'))
+                         secondary=lambda: UserTeam,
+                         backref=backref('teams', lazy='dynamic'))
 
     def to_dict(self):
         return {
@@ -48,8 +48,8 @@ class Project(Base):
         }
 
 
-UserProject = Table(
-    'users_projects', Base.metadata,
+UserTeam = Table(
+    'users_teams', Base.metadata,
     Column('user_id', Integer, ForeignKey('users.id')),
-    Column('project_id', Integer, ForeignKey('projects.id'))
+    Column('team_id', Integer, ForeignKey('teams.id'))
 )
