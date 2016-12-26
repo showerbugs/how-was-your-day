@@ -36,9 +36,9 @@ def flask_client(flask_app):
 @pytest.fixture(scope='session')
 def db():
     engine = create_engine(config['TEST_DB_URL'], echo=True)
-    Session = sessionmaker(bind=engine)
+    session = sessionmaker(bind=engine)
     _db = {'engine': engine,
-           'session': Session}
+           'session': session}
 
     alembic_config = AlembicConfig(config['ALEMBIC_INI'])
     alembic_config.set_main_option('sqlalchemy.url', config['TEST_DB_URL'])
