@@ -26,6 +26,10 @@ class User(Base, UserMixin):
     updated_at = Column(DateTime(timezone=True), default=datetime.now,
                         onupdate=datetime.now)
 
+    @property
+    def unwrap(self):
+        return self
+
     def __repr__(self):
         return '<User(\'{}\', \'{}\', \'{}\')>'.format(
             self.email, self.password, self.name)

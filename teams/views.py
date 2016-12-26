@@ -32,6 +32,6 @@ def create_team():
     params = request.json
     name = params['name']
     new_team = Team(name=name)
-    new_team.users.append(current_user)
+    new_team.users.append(current_user.unwrap)
     g.db.add(new_team)
     return jsonify(success=True)

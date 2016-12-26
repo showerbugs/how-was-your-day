@@ -50,7 +50,8 @@ def db():
 
 @pytest.fixture(scope='function')
 def session(db):
-    g.db = db['session']()
-    yield g.db
-    g.db.rollback()
-    g.db.close()
+    session = db['session']()
+    g.db = session  # production APIs use session with g.db
+    yield session
+    session.rollback()
+    session.close()
