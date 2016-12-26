@@ -21,9 +21,9 @@ def list_projects():
 
 @app.route('/<int:project_id>', methods=['GET'])
 @login_required
-def get_project(id):
-    project = current_user.projects.filter(Project.id == id).first()
-    return jsonify(success=True, data={'project': project})
+def get_project(project_id):
+    project = current_user.projects.filter(Project.id == project_id).first()
+    return jsonify(success=True, data={'project': project.to_dict()})
 
 
 @app.route('/', methods=['POST'])
