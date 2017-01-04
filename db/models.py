@@ -3,7 +3,6 @@ from datetime import datetime
 from flask_login.mixins import UserMixin
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.schema import Table
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
@@ -44,8 +43,14 @@ class Team(Base):
     __tablename__ = 'teams'
 
     id = Column(Integer, primary_key=True)
+    owner_id = Column(Integer, ForeignKey('users.id'))
     name = Column(String, unique=True)
+    description = Column(String)
+    created_at = Column(DateTime(timezone=True), default=datetime.now)
+    updated_at = Column(DateTime(timezone=True), default=datetime.now,
+                        onupdate=datetime.now)
 
+    owner = relationship('User', backref='team')
     users = relationship('User',
                          secondary=lambda: UserTeam,
                          backref=backref('teams', lazy='dynamic'))
@@ -53,12 +58,18 @@ class Team(Base):
     def to_dict(self):
         return {
             'name': self.name,
+            'description': self.description,
+            'owner': self.owner_id,
             'users': [user.id for user in self.users],
         }
 
 
-UserTeam = Table(
-    'users_teams', Base.metadata,
-    Column('user_id', Integer, ForeignKey('users.id')),
-    Column('team_id', Integer, ForeignKey('teams.id'))
-)
+class UserTeam(Base):
+    __tablename__ = 'users_teams'
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    team_id = Column(Integer, ForeignKey('teams.id'))
+    created_at = Column(DateTime(timezone=True), default=datetime.now)
+    updated_at = Column(DateTime(timezone=True), default=datetime.now,
+                        onupdate=datetime.now)
