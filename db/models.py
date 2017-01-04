@@ -28,6 +28,11 @@ class User(Base, UserMixin):
 
     @property
     def unwrap(self):
+        """ flask-login current_user's type is LocalProxy
+
+        if you want to get User(sqlalchemy-Base) type,
+        you need to unwrap from LocalProxy """
+
         return self
 
     def __repr__(self):
