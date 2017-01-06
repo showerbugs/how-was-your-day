@@ -34,6 +34,15 @@ class User(Base, UserMixin):
 
         return self
 
+    def to_json(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'name': self.name,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
+        }
+
     def __repr__(self):
         return '<User(\'{}\', \'{}\', \'{}\')>'.format(
             self.email, self.password, self.name)
@@ -57,10 +66,12 @@ class Team(Base):
 
     def to_json(self):
         return {
+            'id': self.id,
+            'ownerId': self.owner_id,
             'name': self.name,
             'description': self.description,
-            'ownerId': self.owner_id,
-            'usersIds': [user.id for user in self.users],
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
         }
 
 
@@ -89,3 +100,14 @@ class Story(Base):
 
     user = relationship('User', backref='stories')
     team = relationship('Team', backref='teams')
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'teamId': self.user_id,
+            'userId': self.team_id,
+            'content': self.content,
+            'publishedAt': self.published_at,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
+        }
