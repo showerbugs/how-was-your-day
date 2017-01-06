@@ -55,12 +55,12 @@ class Team(Base):
                          secondary=lambda: UserTeam,
                          backref=backref('teams', lazy='dynamic'))
 
-    def to_dict(self):
+    def to_json(self):
         return {
             'name': self.name,
             'description': self.description,
-            'owner': self.owner_id,
-            'users': [user.id for user in self.users],
+            'ownerId': self.owner_id,
+            'usersIds': [user.id for user in self.users],
         }
 
 
@@ -70,6 +70,19 @@ class UserTeam(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     team_id = Column(Integer, ForeignKey('teams.id'))
+    created_at = Column(DateTime(timezone=True), default=datetime.now)
+    updated_at = Column(DateTime(timezone=True), default=datetime.now,
+                        onupdate=datetime.now)
+
+
+class Story(Base):
+    __tablename__ = 'stories'
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    team_id = Column(Integer, ForeignKey('teams.id'))
+    content = Column(String)
+    published_at = Column(DateTime(timezone=True), default=datetime.now)
     created_at = Column(DateTime(timezone=True), default=datetime.now)
     updated_at = Column(DateTime(timezone=True), default=datetime.now,
                         onupdate=datetime.now)
