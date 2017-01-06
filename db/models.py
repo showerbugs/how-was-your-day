@@ -86,3 +86,6 @@ class Story(Base):
     created_at = Column(DateTime(timezone=True), default=datetime.now)
     updated_at = Column(DateTime(timezone=True), default=datetime.now,
                         onupdate=datetime.now)
+
+    user = relationship('User', backref='stories')
+    team = relationship('Team', backref='teams')
