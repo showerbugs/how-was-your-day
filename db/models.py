@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from flask_login.mixins import UserMixin
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -61,7 +60,7 @@ class Team(Base):
 
     owner = relationship('User', backref='team')
     users = relationship('User',
-                         secondary=lambda: UserTeam,
+                         secondary='users_teams',
                          backref=backref('teams', lazy='dynamic'))
 
     def to_json(self):
