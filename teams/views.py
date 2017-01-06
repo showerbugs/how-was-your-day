@@ -24,7 +24,23 @@ def list_teams():
 @login_required
 def get_team(team_id):
     team = current_user.teams.filter(Team.id == team_id).first()
-    team = team.to_dict()
+    if not team:
+        error = {
+            'code': 111,
+            'message': 'No team with id {}'.format(team_id),
+        }
+        return jsonify(success=False, error=error), 404
+
+    stories = team.stories
+    team = team.to_json()
+
+    def load_user(story):
+        user = story.user
+        story = story.to_json()
+        story['user'] = user.to_json()
+        return story
+    team['stories']= [load_user(story) for story in stories]
+
     return jsonify(success=True, data={'team': team})
 
 
@@ -34,9 +50,9 @@ def create_team():
     params = request.json
     name = params['name']
     description = params['description']
+    owner = current_user.unwrap
     users = g.db.query(User)\
         .filter(User.email.in_(params['userEmails']))
-    owner = current_user.unwrap
 
     new_team = Team(name=name, description=description, owner_id=owner.id)
     for user in users:
