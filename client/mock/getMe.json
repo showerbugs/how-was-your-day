@@ -1,0 +1,22 @@
+{
+    "success": true,
+    "data": {
+        "user": {
+            "id": "123213123123",
+            "email": "vnthf1@naver.com",
+            "teams": [{
+                "teamId": 1,
+                "permission": "owner",
+                "thumnailImageUrl": "https://gravatar.com/awefawef",
+                "name": "호우",
+                "joinedAt": "123213321",
+            }, {
+                "teamId": 2,
+                "permission": "owner",
+                "thumnailImageUrl": "https://gravatar.com/awefawef",
+                "name": "호우2",
+                "joinedAt": "123213321",
+            }]
+        }
+    }
+}

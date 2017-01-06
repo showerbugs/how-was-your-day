@@ -1,8 +1,15 @@
 {
-  "isSuccess": true,
-  "httpStatusCode": 200,
-  "result": {
-    "name": "Showerbugs",
-    "description": "A group for developer"
+  "success": true,
+  "data": {
+    "team": {
+        "id": 1,
+        "name": "shower bugs",
+        "description": "For developer",
+        "thumnailImageUrl": "https://avatars1.githubusercontent.com/u/23075082?v=3&s=200",
+        "userIds": [1,2,3],
+        "ownerId": 1,
+        "createdAt": "2017-01-01 HH:mm:ss",
+        "updatedAt": "2017-01-01 HH:mm:ss"
+    }
   }
 }

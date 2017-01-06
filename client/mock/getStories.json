@@ -1,21 +1,41 @@
 {
-  "isSuccess": true,
-  "httpStatusCode": 200,
-  "result": {
-    "totalCount": 5,
-    "data": [
-      {
-        "content": "Today is good",
-        "creator": "영근"
-      }, {
-        "content": "I was very sick.",
-        "creator": "호우"
-      }
-    ],
-    "countInfo": [
-      {"name": "My Stroy", "count": "15"},
-      {"name": "Team Total Stroy", "count": "64"},
-      {"name": "Dairy Stroy", "count": "20"}
-    ]
+  "success": true,
+  "data": {
+    "stories": [{
+        "id": "123",
+        "content": "오늘 하루는 정말 즐거운 협업이었습니다. TDD의 위대함을 느낄 수 있었죠",
+        "createdAt": "2017-01-01 12:00:00",
+        "updatedAt": "2017-01-01 12:00:00",
+        "user": {
+            "id": "1",
+            "thumnailImageUrl": "https://gravatar.com/awefawef",
+            "name": "호우"
+        }
+    }, {
+        "id": "124",
+        "content": "오늘 하루는 정말 즐거운 협업이었습니다. TDD의 위대함을 느낄 수 있었죠2",
+        "createdAt": "2017-01-01 12:00:00",
+        "updatedAt": "2017-01-01 12:00:00",
+        "user": {
+            "id": "2",
+            "thumnailImageUrl": "https://gravatar.com/awefawef",
+            "name": "영근"
+        }
+    }, {
+        "id": "125",
+        "content": "오늘 하루는 정말 즐거운 협업이었습니다. TDD의 위대함을 느낄 수 있었죠3",
+        "createdAt": "2017-01-02 12:00:00",
+        "updatedAt": "2017-01-02 12:00:00",
+        "user": {
+            "id": "1",
+            "thumnailImageUrl": "https://gravatar.com/awefawef",
+            "name": "호우"
+        }
+    }],
+    "count": 3,
+    "statisticCount": {
+        "myStoryCount": 2,
+        "dailyCount": 2
+    }
   }
 }
