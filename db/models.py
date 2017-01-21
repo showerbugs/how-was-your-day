@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask_login.mixins import UserMixin
-
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Table
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
@@ -24,8 +24,7 @@ class User(Base, UserMixin):
     updated_at = Column(DateTime(timezone=True), default=datetime.now,
                         onupdate=datetime.now)
 
-    @property
-    def unwrap(self):
+    def unwrap_localproxy(self):
         """ flask-login current_user's type is LocalProxy
 
         if you want to get User(sqlalchemy-Base) type,
@@ -74,15 +73,14 @@ class Team(Base):
         }
 
 
-class UserTeam(Base):
-    __tablename__ = 'users_teams'
-
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    team_id = Column(Integer, ForeignKey('teams.id'))
-    created_at = Column(DateTime(timezone=True), default=datetime.now)
-    updated_at = Column(DateTime(timezone=True), default=datetime.now,
-                        onupdate=datetime.now)
+UserTeam = Table(
+    'users_teams', Base.metadata,
+    Column('user_id', Integer, ForeignKey('users.id')),
+    Column('team_id', Integer, ForeignKey('teams.id')),
+    Column('created_at', DateTime(timezone=True), default=datetime.now),
+    Column('updated_at', DateTime(timezone=True), default=datetime.now,
+           onupdate=datetime.now),
+)
 
 
 class Story(Base):
