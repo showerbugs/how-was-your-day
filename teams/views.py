@@ -31,9 +31,11 @@ def get_team(team_id):
         }
         return jsonify(success=False, error=error), 404
 
+    user_ids = [user.id for user in team.users]
     stories = team.stories
+
     team = team.to_json()
-    team['userIds'] = [user.id for user in team.users]
+    team['userIds'] = user_ids
 
     def load_story_user(story):
         user = story.user
