@@ -3,24 +3,7 @@ import json
 from db.models import Team
 
 
-class TestUser:
-    def test_create_team(self, flask_client, session, logined_user_hou):
-        # Given
-        new_team_name = 'new_team'
-        new_team_description = 'new_team_description'
-        user_email = 'new_user@email.com'
-        data = json.dumps({'name': new_team_name,
-                           'description': new_team_description,
-                           'userEmails': user_email})
-        # When
-        flask_client.post('/teams/', data=data,
-                          content_type='application/json',
-                          follow_redirects=True)
-        # Then 새로운 team이 정상적으로 db에 들어가 있다.
-        created_team = session.query(Team) \
-            .filter(Team.name == new_team_name).first()
-        assert created_team.name == new_team_name
-
+class TestTeam:
     def test_get_team_list(self, flask_client, session, logined_user_hou):
         # Given 팀을 만들고
         team = Team(name='new_team')
@@ -58,3 +41,41 @@ class TestUser:
         assert resp.status_code == 200
         assert result['success']
         assert result['data']['team']['name'] == team_name
+
+    def test_create_team(self, flask_client, session, logined_user_hou):
+        # Given
+        new_team_name = 'new_team'
+        new_team_description = 'new_team_description'
+        user_email = 'new_user@email.com'
+        data = json.dumps({'name': new_team_name,
+                           'description': new_team_description,
+                           'userEmails': user_email})
+        # When
+        flask_client.post('/teams/', data=data,
+                          content_type='application/json',
+                          follow_redirects=True)
+        # Then 새로운 team이 정상적으로 db에 들어가 있다.
+        created_team = session.query(Team) \
+            .filter(Team.name == new_team_name).first()
+        assert created_team.name == new_team_name
+
+    def test_update_team(self, flask_client, session,
+                         logined_user_hou, team_hou):
+        origin_team_id = team_hou.id
+        update_team_name = 'update_name'
+        update_team_description = 'update_description'
+        update_data = json.dumps({
+            'name': update_team_name,
+            'description': update_team_description,
+        })
+
+        resp = flask_client.put('/teams/{}'.format(origin_team_id),
+                                data=update_data,
+                                content_type='application/json')
+        result = json.loads(resp.data.decode())
+        assert resp.status_code == 200
+        assert result['success']
+
+        updated_team = session.query(Team)\
+            .filter(Team.name == update_team_name).first()
+        assert updated_team
