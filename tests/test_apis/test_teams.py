@@ -3,7 +3,7 @@ import json
 from db.models import Team
 
 
-class TestUser:
+class TestTeam:
     def test_create_team(self, flask_client, session, logined_user_hou):
         # Given
         new_team_name = 'new_team'
