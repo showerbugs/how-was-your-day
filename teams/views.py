@@ -65,3 +65,24 @@ def create_team():
 
     g.db.add(new_team)
     return jsonify(success=True, data={})
+
+
+@app.route('/<int:team_id>', methods=['PUT'])
+@login_required
+def update_team(team_id):
+    params = request.json
+    update_name = params['name']
+    update_description = params['description']
+
+    origin_team = g.db.query(Team)\
+        .filter(Team.id == team_id).first()
+    if not origin_team:
+        error = {
+            'code': 111,
+            'message': 'No team with id {}'.format(team_id),
+        }
+        return jsonify(success=False, error=error), 404
+
+    origin_team.name = update_name
+    origin_team.description = update_description
+    return jsonify(success=True, data={})
