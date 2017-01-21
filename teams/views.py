@@ -16,7 +16,7 @@ app = Blueprint('teams', __name__)
 @login_required
 def list_teams():
     teams = current_user.teams
-    teams = [team.to_dict() for team in teams]
+    teams = [team.to_json() for team in teams]
     return jsonify(success=True, data={'teams': teams})
 
 
@@ -39,7 +39,7 @@ def get_team(team_id):
         story = story.to_json()
         story['user'] = user.to_json()
         return story
-    team['stories']= [load_user(story) for story in stories]
+    team['stories'] = [load_user(story) for story in stories]
 
     return jsonify(success=True, data={'team': team})
 
@@ -50,7 +50,7 @@ def create_team():
     params = request.json
     name = params['name']
     description = params['description']
-    owner = current_user.unwrap
+    owner = current_user.unwrap_localproxy()
     users = g.db.query(User)\
         .filter(User.email.in_(params['userEmails']))
 

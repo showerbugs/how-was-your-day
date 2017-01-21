@@ -7,7 +7,11 @@ class TestUser:
     def test_create_team(self, flask_client, session, logined_user_hou):
         # Given
         new_team_name = 'new_team'
-        data = json.dumps({'name': new_team_name})
+        new_team_description = 'new_team_description'
+        user_email = 'new_user@email.com'
+        data = json.dumps({'name': new_team_name,
+                           'description': new_team_description,
+                           'userEmails': user_email})
         # When
         flask_client.post('/teams/', data=data,
                           content_type='application/json',
