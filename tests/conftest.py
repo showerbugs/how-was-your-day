@@ -1,5 +1,4 @@
 import sys
-
 import pytest
 from flask import g
 from sqlalchemy import create_engine

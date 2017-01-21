@@ -96,7 +96,7 @@ class Story(Base):
                         onupdate=datetime.now)
 
     user = relationship('User', backref='stories')
-    team = relationship('Team', backref='teams')
+    team = relationship('Team', backref='stories')
 
     def to_json(self):
         return {
