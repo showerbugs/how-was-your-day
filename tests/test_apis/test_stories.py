@@ -2,8 +2,10 @@ import json
 
 from db.models import Story
 
+
 class TestStory:
-    def test_register_story(self, flask_client, session, team_hou, logined_user_hou):
+    def test_create_story(self, flask_client, session, team_hou,
+                          logined_user_hou):
         # Given story 내용을가지고
         content = "김소여니는 귀엽당, 왜냐면 귀엽기 때문이다."
         data = json.dumps({'content': content})
