@@ -7,6 +7,7 @@ from flask_login import login_required
 
 from db.models import User
 from db.models import Team
+from db.models import Story
 
 
 app = Blueprint('teams', __name__)
@@ -85,4 +86,14 @@ def update_team(team_id):
 
     origin_team.name = update_name
     origin_team.description = update_description
+    return jsonify(success=True, data={})
+
+@app.route('/<int:team_id>/stories', methods=['POST'])
+@login_required
+def create_story(team_id):
+    params = request.json
+    content= params['content']
+    user = current_user.unwrap_localproxy()
+    new_story = Story(content=content, team_id = team_id, user_id=user.id)
+    g.db.add(new_story)
     return jsonify(success=True, data={})
