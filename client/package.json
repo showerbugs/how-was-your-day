@@ -19,6 +19,7 @@
   "homepage": "https://github.com/showerbugs/how-was-your-day#readme",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "eslint-plugin-promise": "^2.0.1",
     "jquery": "^3.1.1",
     "lodash": "^4.17.2",
     "material-design-icons": "^3.0.1",
@@ -26,6 +27,7 @@
     "serve-favicon": "^2.3.0",
     "vue": "^2.0.1",
     "vue-router": "^2.0.0",
+    "vue-style-loader": "^1.0.0",
     "vue-ui": "^0.1.3",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^3.0.0"
@@ -34,8 +36,10 @@
     "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.0.0",
+    "babel-plugin-transform-regenerator": "^6.22.0",
+    "babel-polyfill": "^6.22.0",
     "babel-preset-es2015": "^6.13.2",
-    "babel-preset-stage-2": "^6.13.0",
+    "babel-preset-stage-0": "^6.22.0",
     "chai": "^3.5.0",
     "cross-env": "^3.0.0",
     "css-loader": "^0.23.1",
@@ -48,6 +52,8 @@
     "eslint-plugin-standard": "^2.0.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
     "file-loader": "^0.8.4",
+    "jade": "^1.11.0",
+    "jade-html-loader": "0.0.3",
     "karma": "^1.1.2",
     "karma-mocha": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.1",
@@ -57,15 +63,14 @@
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
     "node-sass": "^3.11.2",
+    "npm-install-webpack-plugin": "^4.0.4",
     "phantomjs-prebuilt": "^2.1.10",
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.5",
     "sinon-chai": "^2.8.0",
+    "style-loader": "^0.13.1",
     "vue-loader": "^9.7.0",
     "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.0",
-    "jade": "^1.11.0",
-    "jade-html-loader": "0.0.3",
-    "style-loader": "^0.13.1"
+    "webpack-dev-server": "^2.1.0-beta.0"
   }
 }

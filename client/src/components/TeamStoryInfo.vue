@@ -14,7 +14,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      infos: 'getTeamCountInfo'
+      infos: 'getStatisticCount'
     })
   },
   created () {

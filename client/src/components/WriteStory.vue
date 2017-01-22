@@ -18,6 +18,9 @@ export default {
       }
       e.target.value = ''
     }
+  },
+  mounted() {
+      console.log(this.$refs)
   }
 }
 

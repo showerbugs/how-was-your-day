@@ -56,9 +56,6 @@ body {
 
 }
 
-img {
-  width: 100%;
-}
 h1, h2 {
   font-weight: normal;
   margin: 0;

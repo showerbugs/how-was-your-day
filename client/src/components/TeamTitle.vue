@@ -13,12 +13,12 @@
 export default {
   props: ['team'],
   computed: {
-    detail: function(){
+    detail (){
       return 'more detail showerbugs'
     }
   },
   methods: {
-    setProject: function(){
+    setProject (){
       alert();
     }
   }

@@ -13,7 +13,8 @@
           <div class="timeline-footer">
               <a><i class="glyphicon glyphicon-thumbs-up"></i></a>
               <a><i class="glyphicon glyphicon-share"></i></a>
-              <a class="pull-right">{{story.creator}}</a>
+              <img :src="story.user.thumnailImageUrl" width="12"/>
+              <a class="pull-right">{{story.user.name}}</a>
           </div>
         </div>
       </li>
