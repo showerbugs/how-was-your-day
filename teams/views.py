@@ -114,3 +114,17 @@ def update_story(team_id, story_id):
 
     origin_story.content = update_content
     return jsonify(success=True, data={})
+
+@app.route('/<int:team_id>/stories/<int:story_id>', methods=['DELETE'])
+@login_required
+def remove_story(team_id, story_id):
+    target_story = g.db.query(Story)\
+        .filter(Team.id == team_id, Story.id == story_id).first()
+    if not target_story:
+        error = {
+            'code': 111,
+            'message': 'No story with id {} in team id {}'.format(story_id, team_id),
+        }
+        return jsonify(success=False, error=error), 404
+    g.db.delete(target_story)
+    return jsonify(success=True, data={})
