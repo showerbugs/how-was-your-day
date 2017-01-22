@@ -1,14 +1,13 @@
 from flask import Blueprint
+from flask import g
 from flask import jsonify
 from flask import request
-from flask import g
 from flask_login import current_user
 from flask_login import login_required
 
-from db.models import User
-from db.models import Team
 from db.models import Story
-
+from db.models import Team
+from db.models import User
 
 app = Blueprint('teams', __name__)
 
@@ -43,6 +42,7 @@ def get_team(team_id):
         story = story.to_json()
         story['user'] = user.to_json()
         return story
+
     team['stories'] = [load_story_user(story) for story in stories]
 
     return jsonify(success=True, data={'team': team})
@@ -59,7 +59,7 @@ def create_team():
     new_team.users.append(owner)
     user_emails = params.get('userEmails')
     if user_emails:
-        users = g.db.query(User)\
+        users = g.db.query(User) \
             .filter(User.email.in_(params['userEmails']))
         for user in users:
             new_team.users.append(user)
@@ -74,7 +74,7 @@ def update_team(team_id):
     update_name = params['name']
     update_description = params['description']
 
-    origin_team = g.db.query(Team)\
+    origin_team = g.db.query(Team) \
         .filter(Team.id == team_id).first()
     if not origin_team:
         error = {
@@ -87,15 +87,17 @@ def update_team(team_id):
     origin_team.description = update_description
     return jsonify(success=True, data={})
 
+
 @app.route('/<int:team_id>/stories', methods=['POST'])
 @login_required
 def create_story(team_id):
     params = request.json
-    content= params['content']
+    content = params['content']
     user = current_user.unwrap_localproxy()
-    new_story = Story(content=content, team_id = team_id, user_id=user.id)
+    new_story = Story(content=content, team_id=team_id, user_id=user.id)
     g.db.add(new_story)
     return jsonify(success=True, data={})
+
 
 @app.route('/<int:team_id>/stories/<int:story_id>', methods=['PUT'])
 @login_required
@@ -103,27 +105,31 @@ def update_story(team_id, story_id):
     params = request.json
     update_content = params['content']
 
-    origin_story = g.db.query(Story)\
-        .filter(Team.id == team_id, Story.id == story_id).first()
+    origin_story = g.db.query(Story) \
+        .filter(Story.team_id == team_id, Story.id == story_id).first()
     if not origin_story:
         error = {
             'code': 111,
-            'message': 'No story with id {} in team id {}'.format(story_id, team_id),
+            'message': 'No story with id {} in team id {}'.format(story_id,
+                                                                  team_id),
         }
         return jsonify(success=False, error=error), 404
 
     origin_story.content = update_content
     return jsonify(success=True, data={})
 
+
 @app.route('/<int:team_id>/stories/<int:story_id>', methods=['DELETE'])
 @login_required
 def remove_story(team_id, story_id):
-    target_story = g.db.query(Story)\
-        .filter(Team.id == team_id, Story.id == story_id).first()
+    target_story = g.db.query(Story) \
+        .filter(Story.team_id == team_id, Story.id == story_id).first()
+
     if not target_story:
         error = {
             'code': 111,
-            'message': 'No story with id {} in team id {}'.format(story_id, team_id),
+            'message': 'No story with id {} in team id {}'.format(story_id,
+                                                                  team_id),
         }
         return jsonify(success=False, error=error), 404
     g.db.delete(target_story)

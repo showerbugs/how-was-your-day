@@ -81,7 +81,7 @@ class TestStory:
         assert result_guni['data']['team']['stories']
         assert len(result_guni['data']['team']['stories']) == 1
 
-    def test_delete_story(self, flask_client, session, team_hou,
+    def test_remove_story(self, flask_client, session, team_hou,
                           logined_user_hou):
         # Given Story를 hou팀에 1개 만들고
         content = 'story_hou_1'
