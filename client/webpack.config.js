@@ -1,7 +1,9 @@
 var path = require('path')
 var webpack = require('webpack')
+require("babel-polyfill");
+
 module.exports = {
-  entry: './src/main.js',
+  entry: ['babel-polyfill', './src/main.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -19,7 +21,18 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+             cacheDirectory: true,
+             babelrc: false,
+             presets: [
+                 'es2015',
+                 'stage-0',
+             ],
+             plugins: [
+                 'transform-regenerator',
+             ]
+         }
       },
       {
         test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)$/,
