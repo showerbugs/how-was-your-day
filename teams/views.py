@@ -56,14 +56,13 @@ def create_team():
     description = params['description']
     owner = current_user.unwrap_localproxy()
     new_team = Team(name=name, description=description, owner_id=owner.id)
-
+    new_team.users.append(owner)
     user_emails = params.get('userEmails')
     if user_emails:
         users = g.db.query(User)\
             .filter(User.email.in_(params['userEmails']))
         for user in users:
             new_team.users.append(user)
-
     g.db.add(new_team)
     return jsonify(success=True, data={})
 
