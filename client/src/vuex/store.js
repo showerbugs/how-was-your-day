@@ -18,19 +18,24 @@ const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
 const mutations = {
   GET_STORIES: (state, result) => {
-    state.teamCountInfo = result.countInfo
-    state.stories = result.data
+    state.statisticCount = result.statisticCount
+    state.statisticCount.totalCount = result.count
+    state.stories = result.stories
   },
 
-  GET_TEAM: (state, team) => {
-    state.team = team
+  GET_TEAM: (state, result) => {
+    state.team = result.team
   },
-  //mock용 
+  //mock용
   UPDATE_STORY: (state, result) => {
     console.log(result)
     state.stories.push({
       content: result,
-      creator: '호우'
+      "user": {
+          "id": "1",
+          "thumnailImageUrl": "https://gravatar.com/awefawef",
+          "name": "호우"
+      }
     })
   }
 }
