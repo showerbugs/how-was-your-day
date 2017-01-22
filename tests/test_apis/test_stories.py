@@ -20,6 +20,32 @@ class TestStory:
             .filter(Story.content == content).first()
         assert created_story
 
+    def test_update_story(self, flask_client, session, team_hou, logined_user_hou):
+        # Given There is one story which content is `happy day`
+        old_content = "happy_day"
+        session.add(Story(user_id=logined_user_hou.id, team_id=team_hou.id,
+                          content=old_content))
+        created_story = session.query(Story) \
+            .filter(Story.content== old_content).first()
+        story_id = created_story.id
+
+        # When Call PUT /teams/{team_id}/stories/{story_id}
+        new_content = "sad_day"
+        update_data = json.dumps({
+            'content': new_content,
+        })
+        resp = flask_client.put('/teams/{}/stories/{}'.format(team_hou.id, story_id),
+                                data=update_data,
+                                content_type='application/json')
+
+        # Then The value of ontent is modified
+        assert resp.status_code == 200
+        result = json.loads(resp.data.decode())
+        assert result['success']
+        updated_story= session.query(Story) \
+            .filter(Story.content == new_content).first()
+        assert updated_story
+
     def test_get_stories(self, flask_client, session, team_hou, team_guni,
                          logined_user_hou):
         # Given Story를 hou팀에 2개, guni팀에 1개 만들고

@@ -96,3 +96,21 @@ def create_story(team_id):
     new_story = Story(content=content, team_id = team_id, user_id=user.id)
     g.db.add(new_story)
     return jsonify(success=True, data={})
+
+@app.route('/<int:team_id>/stories/<int:story_id>', methods=['PUT'])
+@login_required
+def update_story(team_id, story_id):
+    params = request.json
+    update_content = params['content']
+
+    origin_story = g.db.query(Story)\
+        .filter(Team.id == team_id, Story.id == story_id).first()
+    if not origin_story:
+        error = {
+            'code': 111,
+            'message': 'No story with id {} in team id {}'.format(story_id, team_id),
+        }
+        return jsonify(success=False, error=error), 404
+
+    origin_story.content = update_content
+    return jsonify(success=True, data={})
