@@ -7,6 +7,7 @@ wiki
 # backend
 *.pyc
 config/local.py
+alembic.ini
 
 # frontend
 client/node_modules

@@ -11,6 +11,7 @@ def user_hou(session):
                name='hou',
                password='1111')
     session.add(hou)
+    session.flush()
     return hou
 
 
@@ -27,6 +28,17 @@ def team_hou(session, user_hou):
     team_hou = Team(owner_id=user_hou.id,
                     name='team_hou',
                     description='team_hou')
+    team_hou.users.append(user_hou)
     session.add(team_hou)
     session.flush()
     return team_hou
+
+@pytest.fixture(scope='function')
+def team_guni(session, user_hou):
+    team_guni = Team(owner_id=user_hou.id,
+                    name='team_guni',
+                    description='team_guni')
+    team_guni.users.append(user_hou)
+    session.add(team_guni)
+    session.flush()
+    return team_guni
