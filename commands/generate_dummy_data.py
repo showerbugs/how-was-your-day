@@ -8,22 +8,23 @@ session = requests.Session()
 
 server_url = 'http://127.0.0.1:5000'
 
-user_list = ['emma', 'olivia', 'sophia', 'isabella', 'ava', 'mia', 'emily',
-             'madison', 'charlotte']
-team_list = ['team1', 'team2', 'team3']
-
-
+users = ['emma', 'olivia', 'sophia', 'isabella', 'ava', 'mia', 'emily',
+         'madison', 'charlotte']
+user_ids = []
+teams = ['team1', 'team2', 'team3']
+team_ids = []
+# psql -U amazingguni -W {PASSWORD} DROP DATABASE howwasyourday
 @command()
 def generate_dummy_data():
     server_url = prompt('Enter the server address where you want to add the ' \
                         'dummy data.', type=str,
                         default='http://127.0.0.1:5000')
-    for user in user_list:
-        create_user(user)
-    for index, team_name in enumerate(team_list):
-        user_selected = user_list[0:index * 5 + 1]
+    for user in users:
+        user_ids.append(create_user(user))
+    for index, team_name in enumerate(teams):
+        user_selected = users[0:index * 5 + 1]
         user_emails = ['{}@email.com'.format(user) for user in user_selected]
-        create_team(team_name, user_list[index], user_emails)
+        team_ids.append(create_team(team_name, users[index], user_emails))
 
 
 def create_team(new_team_name, owner_user_name, user_emails):
@@ -51,7 +52,7 @@ def create_team(new_team_name, owner_user_name, user_emails):
             raise Exception(response_text['msg'])
         print('team "{}"(owner:{}) is created...'.format(new_team_name,
                                                          owner_user_name))
-        return response_text
+        return response_text['data']['team_id']
     except Exception as e:
         print(e)
 
@@ -71,6 +72,12 @@ def create_user(username):
         if response_text['success'] is not True:
             raise Exception(response_text['msg'])
         print('user "{}" is created...'.format(username))
-        return response_text
+        return response_text['data']['user_id']
     except Exception as e:
         print(e)
+
+
+def create_post():
+    print('try create user "{}"'.format())
+    print('user "{}" is created...'.format())
+
