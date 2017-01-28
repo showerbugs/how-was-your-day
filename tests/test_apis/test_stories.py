@@ -16,6 +16,8 @@ class TestStory:
                                  content_type='application/json')
         # Then 잘들어가있다
         assert resp.status_code == 200
+        result = json.loads(resp.data.decode())
+        assert result['data']['story_id']
         created_story = session.query(Story) \
             .filter(Story.content == content).first()
         assert created_story

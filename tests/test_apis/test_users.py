@@ -50,14 +50,20 @@ class TestUser:
         assert result['success'] is False
 
     def test_create_user(self, flask_client, session):
+        # Given Prepare a user with the following information
         data = json.dumps({'email': 'new@email.com', 'name': 'new',
                            'password': '123123', 'password_repeat': '123123'})
+
+        # When Requset POST /users/
         resp = flask_client.post('/users/', data=data,
                                  content_type='application/json')
+
+        # Then The user is created and response contains user id
         result = json.loads(resp.data.decode())
 
         assert resp.status_code == 200
         assert result['success']
+        assert result['data']['user_id']
 
         new_user = session.query(User) \
             .filter(User.email == 'new@email.com').first()

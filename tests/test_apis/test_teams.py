@@ -52,10 +52,15 @@ class TestTeam:
                            'description': new_team_description,
                            'userEmails': user_email})
         # When
-        flask_client.post('/teams/', data=data,
+        resp = flask_client.post('/teams/', data=data,
                           content_type='application/json',
                           follow_redirects=True)
         # Then 새로운 team이 정상적으로 db에 들어가 있다.
+        result = json.loads(resp.data.decode())
+        assert resp.status_code == 200
+        assert result['success']
+        assert result['data']['team_id']
+
         created_team = session.query(Team) \
             .filter(Team.name == new_team_name).first()
         assert created_team.name == new_team_name
