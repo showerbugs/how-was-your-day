@@ -47,6 +47,7 @@ class TestTeam:
         new_team_name = 'new_team'
         new_team_description = 'new_team_description'
         user_email = 'new_user@email.com'
+
         data = json.dumps({'name': new_team_name,
                            'description': new_team_description,
                            'userEmails': user_email})
