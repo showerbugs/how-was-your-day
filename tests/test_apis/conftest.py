@@ -14,6 +14,15 @@ def user_hou(session):
     session.flush()
     return hou
 
+@pytest.fixture(scope='function')
+def user_member(session):
+    member = User(email='member@email.com',
+               name='memeber',
+               password='1111')
+    session.add(member)
+    session.flush()
+    return member
+
 
 @pytest.fixture(scope='function')
 def logined_user_hou(flask_client, user_hou):
