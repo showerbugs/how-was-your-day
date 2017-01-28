@@ -42,19 +42,18 @@ class TestTeam:
         assert result['success']
         assert result['data']['team']['name'] == team_name
 
-    def test_create_team(self, flask_client, session, logined_user_hou):
+    def test_create_team(self, flask_client, session, logined_user_hou, user_member):
         # Given
         new_team_name = 'new_team'
         new_team_description = 'new_team_description'
-        user_email = 'new_user@email.com'
 
         data = json.dumps({'name': new_team_name,
                            'description': new_team_description,
-                           'userEmails': user_email})
+                           'userEmails': [user_member.email]})
         # When
         resp = flask_client.post('/teams/', data=data,
-                          content_type='application/json',
-                          follow_redirects=True)
+                                 content_type='application/json',
+                                 follow_redirects=True)
         # Then 새로운 team이 정상적으로 db에 들어가 있다.
         result = json.loads(resp.data.decode())
         assert resp.status_code == 200
@@ -63,6 +62,7 @@ class TestTeam:
 
         created_team = session.query(Team) \
             .filter(Team.name == new_team_name).first()
+        assert  user_member.email in [user.email for user in created_team.users]
         assert created_team.name == new_team_name
 
     def test_update_team(self, flask_client, session,
@@ -82,6 +82,6 @@ class TestTeam:
         assert resp.status_code == 200
         assert result['success']
 
-        updated_team = session.query(Team)\
+        updated_team = session.query(Team) \
             .filter(Team.name == update_team_name).first()
         assert updated_team
