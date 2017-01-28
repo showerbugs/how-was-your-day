@@ -12,11 +12,11 @@ users = ['emma', 'olivia', 'sophia', 'isabella', 'ava', 'mia', 'emily',
          'madison', 'charlotte']
 user_ids = []
 teams = [{'name': 'team1',
-          'emails': ['{}@email.com' for user in users[0:11]]},
+          'emails': ['{}@email.com'.format(user) for user in users[0:11]]},
          {'name': 'team2',
-          'emails': ['{}@email.com' for user in users[0:6]]},
+          'emails': ['{}@email.com'.format(user) for user in users[0:6]]},
          {'name': 'team3',
-          'emails': ['{}@email.com' for user in users[0:1]]}]
+          'emails': ['{}@email.com'.format(user) for user in users[0:1]]}]
 team_ids = []
 stories = [
     '1) I am trying to understand. 이해하려고 노력 중입니다.',
@@ -85,8 +85,8 @@ def generate_dummy():
         team_emails = team['emails']
         team_id = team_ids[index]
         for index, story in enumerate(stories):
-            create_story(team_emails[index % len(team_emails)], team_id, story)
-
+            writer_user_email = team_emails[index % len(team_emails)]
+            create_story(writer_user_email, team_id, story)
 
 
 def create_team(new_team, owner_user_name):
@@ -139,6 +139,28 @@ def create_user(username):
     except Exception as e:
         print(' - ' + str(e))
 
+
 def create_story(user_email, team_id, content):
-    print('Create story "{}"'.format(content))
-    print(' Story "{}" is created...'.format(content))
+    try:
+        print('Create story "{}"'.format(content))
+        print(' - try signup {}'.format(user_email))
+        response = session.post('{}/users/signin'.format(server_url),
+                                json={'email': user_email,
+                                      'password': '123123'})
+        if response.status_code is not 200:
+            raise Exception('The status code is not 200 OK. but {}'.format(
+                response.status_code))
+        print(' - successfully signed up..')
+        response = session.post('{}/teams/{}/stories'.format(server_url, team_id),
+                                json={
+                                    'content': content
+                                })
+        if response.status_code is not 200:
+            raise Exception('The status code is not 200 OK. but {}'.format(
+                response.status_code))
+        response_text = json.loads(response.text)
+        if response_text['success'] is not True:
+            raise Exception(response_text['msg'])
+        print(' Story "{}" is created...'.format(content))
+    except Exception as e:
+        print(' - ' + str(e))
