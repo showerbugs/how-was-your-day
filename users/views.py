@@ -1,10 +1,10 @@
 from flask import Blueprint
-from flask import request
 from flask import g
 from flask import jsonify
+from flask import request
+from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
-from flask_login import login_required
 
 from db.models import User
 
@@ -17,9 +17,9 @@ def signin():
     email = params['email']
     password = params['password']
 
-    user = g.db.query(User)\
+    user = g.db.query(User) \
         .filter(User.email == email,
-                User.password == password)\
+                User.password == password) \
         .first()
     if not user:
         return jsonify(success=False, msg='No such user')
@@ -47,4 +47,6 @@ def create_user():
 
     new_user = User(email=email, name=name, password=password)
     g.db.add(new_user)
-    return jsonify(success=True)
+    g.db.flush()
+    g.db.refresh(new_user)
+    return jsonify(success=True, data={'user_id': new_user.id})

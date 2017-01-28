@@ -64,7 +64,9 @@ def create_team():
         for user in users:
             new_team.users.append(user)
     g.db.add(new_team)
-    return jsonify(success=True, data={})
+    g.db.flush()
+    g.db.refresh(new_team)
+    return jsonify(success=True, data={'team_id': new_team.id})
 
 
 @app.route('/<int:team_id>', methods=['PUT'])
@@ -96,7 +98,9 @@ def create_story(team_id):
     user = current_user.unwrap_localproxy()
     new_story = Story(content=content, team_id=team_id, user_id=user.id)
     g.db.add(new_story)
-    return jsonify(success=True, data={})
+    g.db.flush()
+    g.db.refresh(new_story)
+    return jsonify(success=True, data={'story_id': new_story.id})
 
 
 @app.route('/<int:team_id>/stories/<int:story_id>', methods=['PUT'])
