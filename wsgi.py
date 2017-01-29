@@ -14,6 +14,8 @@ from teams.views import app as teams_app
 def create_app():
     app = Flask(__name__)
     app.config.from_object(flask_config)
+    print('create_app {}'.format(app.config))
+
     app.secret_key = os.urandom(24)
 
     app.register_blueprint(users_app, url_prefix='/users')
