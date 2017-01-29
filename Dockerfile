@@ -6,7 +6,7 @@ RUN git clone -b feature/docker https://github.com/showerbugs/how-was-your-day.g
 RUN pip install -r /app/requirements.txt
 
 ENV FLASK_APP wsgi.py
-ENV HOW_WAS_YOUR_DAY_ENV local 
+ENV HOW_WAS_YOUR_DAY_ENV local
 WORKDIR /app
 ENTRYPOINT ["sh", "/app/docker-run-dev.sh"]
 
