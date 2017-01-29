@@ -5,19 +5,16 @@ from config.base import BaseConfig
 
 class LocalConfig(BaseConfig):
     DEBUG = True
+    PRESERVE_CONTEXT_ON_EXCEPTION = False
 
-    DB_USER = '{{ user }}'
-    {% if password -%}
-    DB_PASSWORD = '{{ password }}'
-    {%- else -%}
+    DB_USER = 'showerbugs'
     DB_PASSWORD = ''
-    {%- endif %}
-    DB_HOST = '{{ dbhost }}'
-    DB_PORT = {{ dbport }}
-    DB_NAME = '{{ dbname }}'
+    DB_HOST = 'localhost'
+    DB_PORT = 5432
+    DB_NAME = 'howwasyourday'
     DB_URL = 'postgresql://{}:{}@{}:{}/{}'.format(
         DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)
-    TEST_DB_NAME = '{{ test_dbname }}'
+    TEST_DB_NAME = 'howwasyourday_test'
     TEST_DB_URL = 'postgresql://{}:{}@{}:{}/{}'.format(
         DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, TEST_DB_NAME)
 
