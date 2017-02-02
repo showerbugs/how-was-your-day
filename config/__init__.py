@@ -1,9 +1,6 @@
 import os
 
-try:
-    from config.local import LocalConfig
-except ImportError:
-    from config.dev import DevConfig as LocalConfig
+from config.local import LocalConfig
 from config.dev import DevConfig
 from config.prod import ProdConfig
 from config.travis import TravisConfig

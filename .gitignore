@@ -6,7 +6,6 @@ wiki
 
 # backend
 *.pyc
-config/local.py
 alembic.ini
 
 # frontend
