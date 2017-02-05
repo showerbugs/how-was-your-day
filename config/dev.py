@@ -6,10 +6,10 @@ from config.base import BaseConfig
 class DevConfig(BaseConfig):
     DEBUG = True
 
-    DB_USER = 'showerbugs'
-    DB_PASSWORD = ''
-    DB_HOST = 'localhost'
-    DB_PORT = 5432
+    DB_USER = os.environ.get('HOWWASYOURDAY_DB_USER')
+    DB_PASSWORD = os.environ.get('HOWWASYOURDAY_DB_PASSWORD')
+    DB_HOST = os.environ.get('HOWWASYOURDAY_DB_HOST')
+    DB_PORT = os.environ.get('HOWWASYOURDAY_DB_PORT')
     DB_NAME = 'howwasyourday'
     DB_URL = 'postgresql://{}:{}@{}:{}/{}'.format(
         DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)
