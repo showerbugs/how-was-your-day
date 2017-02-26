@@ -5,8 +5,7 @@
       {{team.description}}
       <button v-on:click="setProject">Settings</button>
     </div>
-
-  <div>
+  </div>
 </template>
 
 <script>
