@@ -3,8 +3,11 @@
     <button class="icon-btn dropdown"><i class="material-icons">menu</i></button>
     <span class="logo">how-was-your-day</span>
     <ul>
-      <li><router-link to="/team">Team</router-link></li>
+      <li><router-link :to="{ name: 'team', params: { teamId: teamId }}">Team</router-link></li>
       <li><router-link to="/organization">Organization</router-link></li>
+    </ul>
+    <ul>
+      <li>로그인이 필요합니다.</li>
     </ul>
   </header>
 </template>
@@ -28,6 +31,11 @@
 <script>
 
 export default {
+  data () {
+    return {
+      teamId: '123'
+    }
+  },
 
 }
 </script>

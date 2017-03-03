@@ -13,14 +13,14 @@ async function fetchFromServer(url, opt) {
 }
 
 export const getStories = ({ commit, state }) => {
-  let result = fetchFromServer('./mock/getStories.json').then(function(result) {
+  let result = fetchFromServer('/mock/getStories.json').then(function(result) {
     console.log(result)
     commit('GET_STORIES', result);
   });
 }
 
 export const getTeam = ({ commit, state }) => {
-  let result = fetchFromServer('./mock/getTeam.json').then(function(result) {
+  let result = fetchFromServer('/mock/getTeam.json').then(function(result) {
       console.log(result)
     commit('GET_TEAM', result);
   });
