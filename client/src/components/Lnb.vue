@@ -13,7 +13,7 @@
 </template>
 <style lang="sass" scoped>
   header {
-    height: 30px;
+    height: 50px;
     padding: 10px;
     background: #fff;
     border-bottom: 1px solid #ccc;
