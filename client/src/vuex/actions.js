@@ -48,6 +48,10 @@ export const signout = async ({ commit }, body) => {
   commit('SIGNOUT', await fetchFromServer('/mock/successPost.json'/*, {method: 'DELETE'}*/));
 }
 
+export const signup = async ({ commit }, body) => {
+  await fetchFromServer('/mock/successPost.json'/*, {method: 'DELETE'}*/);
+}
+
 export const writeStory = ({ commit }, content) => {
     // fetchFromServer('/stories', {method: 'POST', content}).then(function(result) {
     //     commit('GET_STORIES', result);

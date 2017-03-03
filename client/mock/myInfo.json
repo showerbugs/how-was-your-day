@@ -1,7 +1,7 @@
 {
     "success": true,
     "data": {
-        "users": {
+        "user": {
             "id": "123213123123",
             "email": "vnthf1@naver.com",
             "teams": [{

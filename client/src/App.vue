@@ -28,11 +28,10 @@ export default {
     Lnb
   },
   created() {
+    this.$store.dispatch('getMyInfo')
     console.log(this.isSignin)
     this.checkAuth();
-    this.property = 'Example property update.'
     console.log(this.myInfo)
-    console.log('propertyComputed will update, as this.property is now reactive.')
   },
   updated() {
     this.checkAuth();
@@ -47,7 +46,7 @@ export default {
     checkAuth() {
       console.log('checkAuth!!!!!!!!!!', this.isSignin, this.$state, this.$store, this)
       if(!this.isSignin) {
-          this.$router.push('/signin')
+          //this.$router.push('/signin')
       } else {
         this.$store.dispatch('getMyInfo').then((result)=>{
           console.log(result)

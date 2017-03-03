@@ -6,6 +6,7 @@
       <li><router-link :to="{ name: 'team', params: { teamId: teamId }}">Team</router-link></li>
       <li><router-link to="/organization">Organization</router-link></li>
       <li><a @click="signout">singout</a></li>
+      <li>{{myInfo.email}}</li>
     </ul>
     <ul v-if="!isSignin">
       <li>로그인이 필요합니다.</li>
@@ -43,6 +44,10 @@ import { mapGetters } from 'vuex'
 import {router} from '../main.js'
 
 export default {
+  created() {
+    var c = this.myInfo
+    console.log(c)
+  },
   data () {
     return {
       teamId: '123'
@@ -56,8 +61,12 @@ export default {
     }
   },
   computed: {
+    // myInfo() {
+    //   return this.$store.getters.getMyInfo;
+    // },
     ...mapGetters({
-      isSignin: 'isSignin'
+      isSignin: 'isSignin',
+      myInfo: 'getMyInfo'
     })
   }
 }

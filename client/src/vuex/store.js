@@ -22,7 +22,6 @@ const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 const mutations = {
   GET_MYINFO (state, result) {
     state.myInfo = result.user
-    return result;
   },
   GET_STORIES (state, result) {
     state.statisticCount = result.statisticCount
