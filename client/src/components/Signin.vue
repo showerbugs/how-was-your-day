@@ -1,17 +1,17 @@
 <template>
   <div class="login-form-wrap">
-    <form class="login-form" action="POST" url="/login">
+    <form class="login-form" @submit.prevent>
       <div class="split-form">
         <h4>How was your day에 오신것을 환영합니다.</h4>
         <img src="/src/assets/signin_image.png"/>
       </div>
       <div class="split-form">
         <div><label>Email</label></div>
-        <div><input name="email" type="text" placeholder="Enter your email"/></div>
+        <div><input name="email" type="text" v-model="email" placeholder="Enter your email"/></div>
         <div><label>Password</label></div>
-        <div><input name="password" type="password"/></div>
+        <div><input name="password" type="password" v-model="password"/></div>
         <div class="button-wrap">
-            <button class="button" type="submit">로그인</button>
+            <button @click="signin" class="button" type="submit">로그인</button>
             <router-link class="button" to="/signup">회원가입</router-link>
         </div>
       </div>
@@ -19,6 +19,23 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+    methods: {
+      signin(){
+        this.$store.dispatch('signin', {
+          email: this.email,
+          password: this.password
+        }).then(() => {
+          this.$router.push('/')
+          this.$store.dispatch('getMyInfo').then((result)=>{
+            this.$router.push({ name: 'team', params: { teamId: result.users.teams[0].teamId }})
+          });
+        });
+      }
+    }
+  }
 
 </script>
 <style lang="sass" scoped>

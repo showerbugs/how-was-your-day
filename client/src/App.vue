@@ -12,6 +12,7 @@ import Footer from './components/Footer.vue'
 import lodash from 'lodash'
 import jquery from 'jquery'
 //import bootstrap from 'bootstrap'
+import { mapGetters } from 'vuex'
 
 var _ = window._ = lodash;
 var $ = window.$ = window.jQuery = jquery;
@@ -25,6 +26,35 @@ export default {
   },
   components: {
     Lnb
+  },
+  created() {
+    console.log(this.isSignin)
+    this.checkAuth();
+    this.property = 'Example property update.'
+    console.log(this.myInfo)
+    console.log('propertyComputed will update, as this.property is now reactive.')
+  },
+  updated() {
+    this.checkAuth();
+  },
+  computed: {
+    ...mapGetters({
+      isSignin: 'isSignin',
+      myInfo: 'getMyInfo'
+    })
+  },
+  methods: {
+    checkAuth() {
+      console.log('checkAuth!!!!!!!!!!', this.isSignin, this.$state, this.$store, this)
+      if(!this.isSignin) {
+          this.$router.push('/signin')
+      } else {
+        this.$store.dispatch('getMyInfo').then((result)=>{
+          console.log(result)
+          //this.$router.push({ name: 'team', params: { teamId: result.users.teams[0].teamId }})
+        });
+      }
+    }
   }
 }
 </script>

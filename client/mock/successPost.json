@@ -1,0 +1,7 @@
+{
+    "success": true,
+    "error": {
+        "message": "no such user"
+    },
+    "data": {}
+}
