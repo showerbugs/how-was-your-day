@@ -1,12 +1,11 @@
 <template>
   <header class="lnb">
-    <button class="icon-btn dropdown"><i class="material-icons">menu</i></button>
-    <span class="logo">how-was-your-day</span>
+    <span class="logo">How was your day</span>
+    <!-- <router-link class="" v-if="isSignin" :to="{ name: 'team', params: { teamId: myInfo.teams[0].teamId }}">{{myInfo.teams[0].name}}</router-link> -->
     <ul v-if="isSignin">
-      <li><router-link :to="{ name: 'team', params: { teamId: teamId }}">Team</router-link></li>
-      <li><router-link to="/organization">Organization</router-link></li>
-      <li><a @click="signout">singout</a></li>
       <li>{{myInfo.email}}</li>
+      <li><a @click="signout">singout</a></li>
+      <button class="icon-btn dropdown"><i class="material-icons">menu</i></button>
     </ul>
     <ul v-if="!isSignin">
       <li>로그인이 필요합니다.</li>
@@ -16,26 +15,31 @@
 <style lang="sass" scoped>
   header {
     height: 50px;
-    padding: 10px;
+    padding: 10px 0;
     background: #fff;
-    border-bottom: 1px solid #ccc;
-  }
-
-  li {
-    float: left;
-    margin-left: 10px;
-
-    a {
-      cursor: pointer;
-    }
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
   }
 
   .logo {
-    float: right;
+    font-weight: bold;
+  }
+
+  ul {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+
+      li {
+        float: left;
+        margin-left: 10px;
+      }
   }
 
   .dropdown {
-    float: right;
+    margin-top: 4px;
   }
 
 </style>
@@ -55,7 +59,6 @@ export default {
   },
   methods: {
     signout(){
-      console.log('123123123', this.$route.router, this.$route);
       this.$store.dispatch('signout');
       this.$router.push('/signin');
     }

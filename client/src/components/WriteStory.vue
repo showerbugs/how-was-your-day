@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="write-form">
     <textarea placeholder="how was your day? write stroy" @keyup.enter="writeStroy"></textarea>
   </div>
 </template>
@@ -26,13 +26,19 @@ export default {
 
 </script>
 <style lang="sass?outputStyle=expanded" scoped>
+.write-form {
+  text-align: center;
+  height: 100px;
+}
+
 textarea {
   display: inline-block;
   width: 80%;
   box-sizing: border-box;
   font-size: 14px;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #999;
+  margin: 20px 0;
 }
 
 </style>

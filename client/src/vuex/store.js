@@ -9,7 +9,7 @@ const defaultState = {
   myInfo: {},
   stories: [],
   team: {},
-  teamCountInfo: [],
+  statisticCount: [],
   isSignin: localStorage.getItem('session'),
   pending: false
 }

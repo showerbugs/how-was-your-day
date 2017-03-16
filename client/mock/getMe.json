@@ -8,14 +8,14 @@
                 "teamId": 1,
                 "permission": "owner",
                 "thumnailImageUrl": "https://gravatar.com/awefawef",
-                "name": "호우",
-                "joinedAt": "123213321",
+                "name": "showerBugs",
+                "joinedAt": "123213321"
             }, {
                 "teamId": 2,
                 "permission": "owner",
                 "thumnailImageUrl": "https://gravatar.com/awefawef",
-                "name": "호우2",
-                "joinedAt": "123213321",
+                "name": "ShowBB",
+                "joinedAt": "123213321"
             }]
         }
     }

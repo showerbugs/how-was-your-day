@@ -32,7 +32,7 @@ export const getTeam = async ({ commit, state }) => {
 }
 
 export const getMyInfo = async ({ commit, state }) => {
-  let result = await fetchFromServer('/mock/myInfo.json');
+  let result = await fetchFromServer('/mock/getMe.json');
   commit('GET_MYINFO', result);
   return result;
 }
