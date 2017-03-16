@@ -54,7 +54,13 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    proxy: {
+     '/api': {
+       target: 'http://ec2-52-79-196-148.ap-northeast-2.compute.amazonaws.com:8000/',
+       secure: false
+     }
+   }
   },
   devtool: '#eval-source-map'
 }
