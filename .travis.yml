@@ -15,3 +15,7 @@ env:
   - HOW_WAS_YOUR_DAY_ENV=travis
 notifications:
   slack: showerbugs:Fvjq8gKDqp8KgROWr9UX4APk
+branches:
+  only:
+    - master
+    - develop
