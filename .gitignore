@@ -3,6 +3,7 @@
 .env
 *.swp
 wiki
+.ropeproject
 
 # backend
 *.pyc
