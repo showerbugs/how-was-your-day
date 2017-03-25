@@ -59,9 +59,9 @@ module.exports = {
     proxy: {
      '/api': {
        target:  {
-          "host": "ec2-52-79-196-148.ap-northeast-2.compute.amazonaws.com",
+          "host": "localhost",
           "protocol": 'http',
-          "port": 8000
+          "port": 5000
        },
        changeOrigin: true,
        pathRewrite: {
@@ -94,3 +94,8 @@ if (process.env.NODE_ENV === 'production') {
     })
   ])
 }
+//  target:  {
+//     "host": "ec2-52-79-196-148.ap-northeast-2.compute.amazonaws.com",
+//     "protocol": 'http',
+//     "port": 8000
+//  },
