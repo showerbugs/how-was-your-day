@@ -39,17 +39,17 @@ export const getMyInfo = async ({ commit, state }) => {
 
 export const signin = ({ commit }, body) => {
   commit('SIGNIN', result);
-  let result = fetchFromServer('/mock/successPost.json'/*, {method: 'GET', body}*/).then(function(result) {
+  let result = fetchFromServer('/api/users/signin', {method: 'POST', body}).then(function(result) {
     commit('SIGNIN_SUCCESS', result);
   });
 }
 
 export const signout = async ({ commit }, body) => {
-  commit('SIGNOUT', await fetchFromServer('/mock/successPost.json'/*, {method: 'DELETE'}*/));
+  commit('SIGNOUT', await fetchFromServer('/api/users/signout', {method: 'DELETE'}));
 }
 
 export const signup = async ({ commit }, body) => {
-  await fetchFromServer('/mock/successPost.json'/*, {method: 'DELETE'}*/);
+  await fetchFromServer('/api/users', {method: 'POST', body});
 }
 
 export const writeStory = ({ commit }, content) => {
