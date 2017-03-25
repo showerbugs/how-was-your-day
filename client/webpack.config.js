@@ -3,6 +3,7 @@ var webpack = require('webpack')
 require("babel-polyfill");
 
 module.exports = {
+  context: __dirname,
   entry: ['babel-polyfill', './src/main.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -54,7 +55,22 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    proxy: {
+     '/api': {
+       target:  {
+          "host": "ec2-52-79-196-148.ap-northeast-2.compute.amazonaws.com",
+          "protocol": 'http',
+          "port": 8000
+       },
+       changeOrigin: true,
+       pathRewrite: {
+           "^/api": ""
+       },
+       secure: true,
+       logLevel: 'debug'
+     }
+   }
   },
   devtool: '#eval-source-map'
 }

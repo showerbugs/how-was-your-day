@@ -53,9 +53,11 @@ export default {
 
 </script>
 <style lang="sass" scoped>
-    .timeline {
+.timeline {
   list-style: none;
   position: relative;
+  width: 80%;
+  margin: 0 auto;
 }
 .timeline:before {
   top: 0;
