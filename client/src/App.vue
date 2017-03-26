@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-   <lnb></lnb>
+   <Header></Header>
    <router-view class="view"></router-view>
    <Footer></Footer>
    </div>
 </template>
 
 <script>
-import Lnb from './components/Lnb.vue'
+import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import lodash from 'lodash'
 import jquery from 'jquery'
@@ -25,7 +25,7 @@ export default {
     }
   },
   components: {
-    Lnb
+    Header
   },
   created() {
     this.$store.dispatch('getMyInfo')
