@@ -12,7 +12,7 @@ from db.models import User
 app = Blueprint('teams', __name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('', methods=['GET'])
 @login_required
 def get_team_list():
     teams = current_user.teams
@@ -48,7 +48,7 @@ def get_team(team_id):
     return jsonify(success=True, data={'team': team})
 
 
-@app.route('/', methods=['POST'])
+@app.route('', methods=['POST'])
 @login_required
 def create_team():
     params = request.json

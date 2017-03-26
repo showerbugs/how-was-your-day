@@ -30,7 +30,7 @@
         }).then(() => {
           this.$router.push('/')
           this.$store.dispatch('getMyInfo').then((result)=>{
-            this.$router.push({ name: 'team', params: { teamId: result.user.teams[0].teamId }})
+            this.$router.push({ name: 'team', params: { teamId: result.user.teams[0].id }})
           });
         });
       }

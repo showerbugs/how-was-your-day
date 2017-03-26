@@ -5,6 +5,7 @@
     <ul v-if="isSignin">
       <li>{{myInfo.email}}</li>
       <li><a @click="signout">singout</a></li>
+      <router-link class="button" to="/team/new">팀 만들기</router-link>
       <button class="icon-btn dropdown"><i class="material-icons">menu</i></button>
     </ul>
     <ul v-if="!isSignin">

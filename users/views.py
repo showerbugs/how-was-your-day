@@ -5,6 +5,7 @@ from flask import request
 from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
+from flask_login import current_user
 
 from db.models import User
 
@@ -34,6 +35,13 @@ def signout():
     logout_user()
     return jsonify(success=True)
 
+
+@app.route('/me', methods=['GET'])
+def get_me():
+    user = current_user.to_json()
+    user['teams'] = [team.to_json() for team in current_user.teams]
+    return jsonify(success=True, data={'user': user})
+    
 
 @app.route('', methods=['POST'])
 def create_user():

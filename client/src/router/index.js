@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Signin from '../components/Signin.vue'
 import Signup from '../components/Signup.vue'
 import Team from '../components/TeamView.vue'
+import CreateTeam from '../components/CreateTeam.vue'
 import Organization from '../components/Organization.vue'
 import VueRouter from 'vue-router'
 
@@ -14,6 +15,7 @@ const router = new VueRouter({
     {path: '/', component: Signin},
     {path: '/signin', component: Signin},
     {path: '/signup', component: Signup},
+    {path: '/team/new', component: CreateTeam},
     {path: '/team/:teamId', name: 'team', component: Team },
     {path: '/organization', component: Organization }
   ]
