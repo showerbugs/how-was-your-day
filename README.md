@@ -16,8 +16,7 @@
 * Python 3.5.2
 * Flask
 * SQLAlchemy
-* Flask-Testing  
-* Selenium
+* Pytest
 
 ## How to start
 
@@ -26,12 +25,6 @@ Add this to your shell config file (ex: `.bashrc`)
 ```sh
 FLASK_APP=wsgi.py
 HOW_WAS_YOUR_DAY_ENV=local
-```
-
-Run this command to generate `local.py`(local configuration object) in your python-virtualenv
-
-```sh
-python manage.py local_config
 ```
 
 Run this command in your python-virtualenv
