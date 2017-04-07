@@ -33,7 +33,6 @@ export default {
   },
   created () {
 
-    console.log(this.stories)
     // var my_posts = $("[rel=tooltip]");
     //
     // var size = $(window).width();

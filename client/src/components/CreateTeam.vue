@@ -33,7 +33,6 @@
     methods: {
       createTeam() {
         this.$store.dispatch('createTeam', this.form).then((result) => {
-          console.log(result)
           //this.$router.push('/team/new')
         });
       },

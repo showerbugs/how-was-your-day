@@ -22,15 +22,14 @@ async function fetchFromServer(url, opt = {}) {
   }
 }
 
-export const getTeam = async ({ commit, state }) => {
-  let result = await fetchFromServer('/teams');
+export const getTeam = async ({ commit, state }, teamId) => {
+  let result = await fetchFromServer('/teams/' + teamId);
   commit('GET_TEAM', result);
   return result;
 }
 
 export const createTeam = async ({ commit, state }, body) => {
   let result = await fetchFromServer('/teams', {method: 'POST', body});
-  console.log(result)
   return result;
 }
 
@@ -40,11 +39,11 @@ export const getMyInfo = async ({ commit, state }) => {
   return result;
 }
 
-export const signin = ({ commit }, body) => {
+export const signin = async ({ commit }, body) => {
   commit('SIGNIN', result);
-  let result = fetchFromServer('/users/signin', {method: 'POST', body}).then(function(result) {
-    commit('SIGNIN_SUCCESS', result);
-  });
+  let result = await fetchFromServer('/users/signin', {method: 'POST', body});
+  commit('SIGNIN_SUCCESS', result);
+  return result;
 }
 
 export const signout = async ({ commit }, body) => {
@@ -59,7 +58,6 @@ export const createStory = ({ commit }, content) => {
     // fetchFromServer('/stories', {method: 'POST', content}).then(function(result) {
     //     commit('GET_STORIES', result);
     // });
-    console.log(content)
     commit('UPDATE_STORY', content);
 }
 

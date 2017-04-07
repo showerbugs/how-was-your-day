@@ -2,7 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
+import VueCookie from 'vue-cookie'
+//import vueUI from 'vue-ui'
 
+// Tell Vue to use the plugin
+Vue.use(VueCookie);
 Vue.use(Vuex)
 
 const defaultState = {
@@ -10,7 +14,7 @@ const defaultState = {
   stories: [],
   team: {},
   statisticCount: [],
-  isSignin: localStorage.getItem('session'),
+  isSignin: Vue.cookie.get('session'),
   pending: false
 }
 
@@ -34,7 +38,6 @@ const mutations = {
   },
   //mock용
   UPDATE_STORY (state, result) {
-    console.log(result)
     state.stories.push({
       content: result,
       "user": {

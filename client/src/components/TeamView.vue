@@ -22,7 +22,7 @@ export default {
     })
   },
   mounted () {
-    this.$store.dispatch('getTeam')
+    this.$store.dispatch('getTeam', this.$route.params.teamId)
     this.$store.dispatch('getStories')
   },
   components: {

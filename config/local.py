@@ -18,3 +18,4 @@ class LocalConfig(BaseConfig):
         DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, TEST_DB_NAME)
 
     ALEMBIC_INI = os.path.join(os.getcwd(), 'alembic.ini')
+    SESSION_COOKIE_HTTPONLY = False
