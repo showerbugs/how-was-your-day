@@ -61,8 +61,8 @@ export const createStory = ({ commit }, content) => {
     commit('UPDATE_STORY', content);
 }
 
-export const getStories = async ({ commit, state }) => {
-  let result = await fetchFromServer('/mock/getStories.json');
+export const getStories = async ({ commit, state }, teamId) => {
+  let result = await fetchFromServer('/teams/' + teamId + '/stories');
   commit('GET_STORIES', result);
   return result;
 }

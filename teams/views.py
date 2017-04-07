@@ -1,9 +1,12 @@
+from datetime import datetime
+
 from flask import Blueprint
 from flask import g
 from flask import jsonify
 from flask import request
 from flask_login import current_user
 from flask_login import login_required
+from sqlalchemy.sql import func
 
 from db.models import Story
 from db.models import Team
@@ -101,6 +104,37 @@ def create_story(team_id):
     g.db.flush()
     g.db.refresh(new_story)
     return jsonify(success=True, data={'story_id': new_story.id})
+
+
+@app.route('/<int:team_id>/stories', methods=['GET'])
+@login_required
+def get_stories(team_id):
+    stories = g.db.query(Story).filter(Story.team_id == team_id).all()
+    result = []
+    for story in stories:
+        user = story.user
+        story = story.to_json()
+        story['user'] = user.to_json()
+        result.append(story)
+
+    my_stories_count = g.db.query(Story)\
+        .filter(Story.team_id == team_id,
+                Story.user_id == current_user.id).count()
+    daily_count = g.db.query(Story)\
+        .filter(Story.team_id == team_id,
+                func.date(Story.published_at) == datetime.now().date()).count()
+
+    return jsonify(
+        success=True,
+        data={
+            'stories': result,
+            'count': len(result),
+            'statisticCount': {
+                'myStoryCount': my_stories_count,
+                'dailyCount': daily_count,
+            }
+        })
+
 
 
 @app.route('/<int:team_id>/stories/<int:story_id>', methods=['PUT'])
