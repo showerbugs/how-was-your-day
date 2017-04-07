@@ -28,8 +28,8 @@
           email: this.email,
           password: this.password
         }).then(() => {
-          this.$router.push('/')
           this.$store.dispatch('getMyInfo').then((result)=>{
+            console.log(result)
             this.$router.push({ name: 'team', params: { teamId: result.user.teams[0].id }})
           });
         });

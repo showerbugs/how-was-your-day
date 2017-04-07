@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-   <Header></Header>
+   <app-header></app-header>
    <router-view class="view"></router-view>
-   <Footer></Footer>
+   <app-footer></app-footer>
    </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
 import lodash from 'lodash'
 import jquery from 'jquery'
 //import bootstrap from 'bootstrap'
@@ -25,11 +25,11 @@ export default {
     }
   },
   components: {
-    Header
+    AppHeader,
+    AppFooter
   },
   created() {
-    this.$store.dispatch('getMyInfo')
-    console.log(this.isSignin)
+    //this.$store.dispatch('getMyInfo')
     this.checkAuth();
     console.log(this.myInfo)
   },
@@ -44,14 +44,12 @@ export default {
   },
   methods: {
     checkAuth() {
-      console.log('checkAuth!!!!!!!!!!', this.isSignin, this.$state, this.$store, this)
       if(!this.isSignin) {
           //this.$router.push('/signin')
       } else {
-        this.$store.dispatch('getMyInfo').then((result)=>{
-          console.log(result)
+      //  this.$store.dispatch('getMyInfo').then((result)=>{
           //this.$router.push({ name: 'team', params: { teamId: result.users.teams[0].teamId }})
-        });
+        //});
       }
     }
   }

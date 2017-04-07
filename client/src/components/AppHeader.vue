@@ -51,11 +51,9 @@ import {router} from '../main.js'
 export default {
   created() {
     var c = this.myInfo
-    console.log(c)
   },
   data () {
     return {
-      teamId: '123'
     }
   },
   methods: {
