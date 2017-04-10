@@ -22,7 +22,7 @@ async function fetchFromServer(url, opt = {}) {
   }
 }
 
-export const getTeam = async ({ commit, state }, teamId) => {
+export const getTeam = async ({ commit}, teamId) => {
   let result = await fetchFromServer('/teams/' + teamId);
   commit('GET_TEAM', result);
   return result;
@@ -54,14 +54,13 @@ export const signup = async ({ commit }, body) => {
   await fetchFromServer('/users', {method: 'POST', body});
 }
 
-export const createStory = ({ commit }, content) => {
-    // fetchFromServer('/stories', {method: 'POST', content}).then(function(result) {
-    //     commit('GET_STORIES', result);
-    // });
-    commit('UPDATE_STORY', content);
+export const createStory = async ({ commit}, {teamId, content}) => {
+    let result = await fetchFromServer('/teams/' + teamId + '/stories', {method: 'POST', body: {content}});
+    getStories({ commit}, teamId);
+    return result;
 }
 
-export const getStories = async ({ commit, state }, teamId) => {
+export const getStories = async ({ commit}, teamId) => {
   let result = await fetchFromServer('/teams/' + teamId + '/stories');
   commit('GET_STORIES', result);
   return result;

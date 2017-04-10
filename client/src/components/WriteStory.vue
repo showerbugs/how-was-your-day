@@ -14,7 +14,10 @@ export default {
       e.preventDefault()
       const content = e.target.value
       if(content.trim()) {
-        this.$store.dispatch('writeStory', content)
+        this.$store.dispatch('createStory', {
+          teamId: this.$route.params.teamId,
+          content
+        })
       }
       e.target.value = ''
     }

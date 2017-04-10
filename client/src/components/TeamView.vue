@@ -23,7 +23,7 @@ export default {
   },
   mounted () {
     this.$store.dispatch('getTeam', this.$route.params.teamId)
-    this.$store.dispatch('getStories')
+    this.$store.dispatch('getStories', this.$route.params.teamId)
   },
   components: {
     TeamStoryInfo,
