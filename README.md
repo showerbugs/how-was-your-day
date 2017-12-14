@@ -32,4 +32,3 @@ Run this command in your python-virtualenv
 ```sh
 flask run
 ```
-
